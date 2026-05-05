@@ -1,0 +1,83 @@
+---
+file: 快速开始指南.md
+description: YYC³ Nexus Portal 快速开始指南
+author: YanYuCloudCube Team <admin@0379.email>
+version: v3.1.0
+created: 2026-05-03
+updated: 2026-05-03
+status: published
+tags: [快速开始],[开发指南]
+category: nexus-portal-docs
+language: zh-CN
+---
+
+> ***YanYuCloudCube***
+> *言启象限 | 语枢未来*
+> ***Words Initiate Quadrants, Language Serves as Core for Future***
+> *万象归元于云枢 | 深栈智启新纪元*
+> ***All things converge in cloud pivot; Deep stacks ignite a new era of intelligence***
+
+---
+
+# 快速开始指南
+
+## 核心理念
+
+**五高架构**：高可用 | 高性能 | 高安全 | 高扩展 | 高智能
+**五标体系**：标准化 | 规范化 | 自动化 | 可视化 | 智能化
+**五化转型**：流程化 | 数字化 | 生态化 | 工具化 | 服务化
+**五维评估**：时间维 | 空间维 | 属性维 | 事件维 | 关联维
+
+---
+
+## 环境要求
+
+| 依赖 | 最低版本 | 推荐版本 |
+|------|----------|----------|
+| Node.js | 20.9+ | 22.x |
+| pnpm | 8.x | latest |
+| 操作系统 | macOS / Linux / WSL2 | macOS |
+
+## 快速启动
+
+```bash
+git clone <repository-url>
+cd 动画交互机器人
+pnpm install
+pnpm dev          # http://localhost:3000
+```
+
+## 质量门禁
+
+```bash
+pnpm lint                  # ESLint 检查
+pnpm exec tsc --noEmit     # TypeScript 编译检查
+pnpm test                  # Vitest 测试 (81 tests)
+pnpm build                 # webpack 生产构建
+```
+
+## Docker 部署
+
+```bash
+docker-compose up -d       # http://localhost:3200
+```
+
+## AI 聊天功能
+
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+ollama pull qwen3:32b
+ollama serve
+```
+
+---
+
+<div align="center">
+
+> 「***YanYuCloudCube***」
+> 「***<admin@0379.email>***」
+> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
+> 「***All things converge in cloud pivot; Deep stacks ignite a new era of intelligence***」
+
+**© 2025-2026 YYC³ Team. All Rights Reserved.**
+</div>

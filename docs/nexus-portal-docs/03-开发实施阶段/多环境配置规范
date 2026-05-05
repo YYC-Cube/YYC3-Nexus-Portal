@@ -1,0 +1,56 @@
+---
+file: 多环境配置规范.md
+description: YYC³ 环境隔离策略
+author: YanYuCloudCube Team <admin@0379.email>
+version: v3.1.0
+created: 2026-05-03
+updated: 2026-05-03
+status: published
+tags: [环境配置],[规范]
+category: nexus-portal-docs
+language: zh-CN
+---
+
+> ***YanYuCloudCube***
+> *言启象限 | 语枢未来*
+> ***Words Initiate Quadrants, Language Serves as Core for Future***
+> *万象归元于云枢 | 深栈智启新纪元*
+> ***All things converge in cloud pivot; Deep stacks ignite a new era of intelligence***
+
+---
+
+# 多环境配置规范
+
+## 核心理念
+
+**五高架构**：高可用 | 高性能 | 高安全 | 高扩展 | 高智能
+**五标体系**：标准化 | 规范化 | 自动化 | 可视化 | 智能化
+**五化转型**：流程化 | 数字化 | 生态化 | 工具化 | 服务化
+**五维评估**：时间维 | 空间维 | 属性维 | 事件维 | 关联维
+
+---
+
+| 环境 | 用途 | 配置 |
+|------|------|------|
+| development | 本地开发 | `pnpm dev` → Turbopack → :3000 |
+| production | 生产部署 | `pnpm build` → webpack → Docker:3200 |
+| CI | GitHub Actions | ubuntu → quality gates → docker |
+
+## 环境变量
+
+| 变量 | 默认值 | 说明 |
+|------|--------|------|
+| OLLAMA_URL | http://localhost:11434 | Ollama 地址 |
+| NODE_ENV | development/production | 运行环境 |
+
+---
+
+<div align="center">
+
+> 「***YanYuCloudCube***」
+> 「***<admin@0379.email>***」
+> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
+> 「***All things converge in cloud pivot; Deep stacks ignite a new era of intelligence***」
+
+**© 2025-2026 YYC³ Team. All Rights Reserved.**
+</div>

@@ -1,0 +1,55 @@
+---
+file: 安全头配置说明.md
+description: YYC³ 安全头配置
+author: YanYuCloudCube Team <admin@0379.email>
+version: v3.1.0
+created: 2026-05-03
+updated: 2026-05-03
+status: published
+tags: [安全],[配置]
+category: nexus-portal-docs
+language: zh-CN
+---
+
+> ***YanYuCloudCube***
+> *言启象限 | 语枢未来*
+> ***Words Initiate Quadrants, Language Serves as Core for Future***
+> *万象归元于云枢 | 深栈智启新纪元*
+> ***All things converge in cloud pivot; Deep stacks ignite a new era of intelligence***
+
+---
+
+# 安全头配置说明
+
+## 核心理念
+
+**五高架构**：高可用 | 高性能 | 高安全 | 高扩展 | 高智能
+**五标体系**：标准化 | 规范化 | 自动化 | 可视化 | 智能化
+**五化转型**：流程化 | 数字化 | 生态化 | 工具化 | 服务化
+**五维评估**：时间维 | 空间维 | 属性维 | 事件维 | 关联维
+
+---
+
+## 安全头 (next.config.mjs)
+
+| Header | 值 |
+|--------|-----|
+| X-DNS-Prefetch-Control | on |
+| X-XSS-Protection | 1; mode=block |
+| X-Frame-Options | SAMEORIGIN |
+| X-Content-Type-Options | nosniff |
+| Referrer-Policy | origin-when-cross-origin |
+| Strict-Transport-Security | max-age=63072000 (prod) |
+| Content-Security-Policy | (prod only) |
+
+---
+
+<div align="center">
+
+> 「***YanYuCloudCube***」
+> 「***<admin@0379.email>***」
+> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
+> 「***All things converge in cloud pivot; Deep stacks ignite a new era of intelligence***」
+
+**© 2025-2026 YYC³ Team. All Rights Reserved.**
+</div>

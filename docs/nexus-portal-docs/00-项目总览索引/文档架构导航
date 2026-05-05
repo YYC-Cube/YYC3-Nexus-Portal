@@ -1,0 +1,65 @@
+---
+file: 文档架构导航.md
+description: YYC³ Nexus Portal 文档体系导航
+author: YanYuCloudCube Team <admin@0379.email>
+version: v3.1.0
+created: 2026-05-03
+updated: 2026-05-03
+status: published
+tags: [文档索引],[导航]
+category: nexus-portal-docs
+language: zh-CN
+---
+
+> ***YanYuCloudCube***
+> *言启象限 | 语枢未来*
+> ***Words Initiate Quadrants, Language Serves as Core for Future***
+> *万象归元于云枢 | 深栈智启新纪元*
+> ***All things converge in cloud pivot; Deep stacks ignite a new era of intelligence***
+
+---
+
+# 文档架构导航
+
+## 核心理念
+
+**五高架构**：高可用 | 高性能 | 高安全 | 高扩展 | 高智能
+**五标体系**：标准化 | 规范化 | 自动化 | 可视化 | 智能化
+**五化转型**：流程化 | 数字化 | 生态化 | 工具化 | 服务化
+**五维评估**：时间维 | 空间维 | 属性维 | 事件维 | 关联维
+
+---
+
+## 文档体系总览
+
+| 阶段 | 目录 | 文档数 | 核心内容 |
+|------|------|--------|----------|
+| 00 | 项目总览索引 | 5 | 总览手册、架构导航、快速开始、概念词典、更新日志 |
+| 01 | 启动规划阶段 | 6 | 章程愿景、范围说明书、里程碑、需求分析、PRD |
+| 02 | 项目设计阶段 | 9 | 架构设计、技术选型、i18n设计、AI集成、主题系统、组件设计 |
+| 03 | 开发实施阶段 | 6 | 环境搭建、Git规范、TypeScript规范、i18n规范 |
+| 04 | 测试审核阶段 | 6 | 测试策略、i18n测试、API测试、质量门禁 |
+| 05 | 交付部署阶段 | 5 | Docker方案、CI/CD、安全头、交付物、验收标准 |
+| 06 | 运维保障阶段 | 2 | 运维策略、监控告警 |
+| 07 | 安全合规保障 | 2 | 安全开发规范、CSP策略 |
+| 08 | AI Family管理 | 3 | 成员矩阵、接口规范、推理部署 |
+| 09 | 智能演进优化 | 2 | 持续改进、i18n扩展 |
+
+## 文档规范
+
+- **命名**：`{编号}-{阶段}-{模块}-{文档名称}.md`
+- **frontmatter**：file / description / author / version / created / updated / status / tags / category / language
+- **品牌标识**：每个文档包含品牌头（YanYuCloudCube）和品牌尾（admin@0379.email）
+- **注册表**：`docs/document_registry.json` 维护全量文档注册
+
+---
+
+<div align="center">
+
+> 「***YanYuCloudCube***」
+> 「***<admin@0379.email>***」
+> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
+> 「***All things converge in cloud pivot; Deep stacks ignite a new era of intelligence***」
+
+**© 2025-2026 YYC³ Team. All Rights Reserved.**
+</div>

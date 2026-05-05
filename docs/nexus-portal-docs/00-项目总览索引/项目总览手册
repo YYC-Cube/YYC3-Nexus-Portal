@@ -1,0 +1,105 @@
+---
+file: 项目总览手册.md
+description: YYC³ Nexus Portal 项目总览手册
+author: YanYuCloudCube Team <admin@0379.email>
+version: v3.1.0
+created: 2026-05-03
+updated: 2026-05-03
+status: published
+tags: [项目总览],[立项]
+category: nexus-portal-docs
+language: zh-CN
+---
+
+> ***YanYuCloudCube***
+> *言启象限 | 语枢未来*
+> ***Words Initiate Quadrants, Language Serves as Core for Future***
+> *万象归元于云枢 | 深栈智启新纪元*
+> ***All things converge in cloud pivot; Deep stacks ignite a new era of intelligence***
+
+---
+
+# YYC³ Nexus Portal — 项目总览手册
+
+## 核心理念
+
+**五高架构**：高可用 | 高性能 | 高安全 | 高扩展 | 高智能
+**五标体系**：标准化 | 规范化 | 自动化 | 可视化 | 智能化
+**五化转型**：流程化 | 数字化 | 生态化 | 工具化 | 服务化
+**五维评估**：时间维 | 空间维 | 属性维 | 事件维 | 关联维
+
+---
+
+## 项目概况
+
+| 属性 | 值 |
+|------|-----|
+| **项目名称** | YYC³ Nexus Portal（言渝云枢 · 智能交互门户） |
+| **品牌** | YanYuCloudCube — 言启象限 · 语枢未来 |
+| **定位** | YYC³ AI Family 3D交互展示门户 |
+| **技术栈** | Next.js 16.2.4 + React 19 + TypeScript 6 + Tailwind CSS 4 |
+| **3D引擎** | @splinetool/react-spline + Canvas 粒子场 |
+| **动画引擎** | Framer Motion |
+| **UI组件库** | Radix UI + shadcn/ui (new-york style) |
+| **i18n** | 自研纯函数翻译体系（10语言 × 79键） |
+| **AI集成** | Ollama Qwen3:32B 本地推理 + SSE 流式响应 |
+| **部署** | Docker standalone + GitHub Actions CI/CD |
+| **质量门禁** | TSC 0 err / ESLint 0 err / Vitest 81 tests / webpack build |
+
+## 核心功能
+
+1. **Hero 3D 场景** — Spline 3D 模型 + Canvas 粒子动画 + 视差效果 + 打字机文字
+2. **五高五标五化五维** — 理念展示区，含 AnimatedCounter 统计数字
+3. **四层架构体系** — 评估层/转型层/规范层/架构层交互展示
+4. **AI Family 矩阵** — 8位AI智能体卡片 + 进度条动画
+5. **AI 聊天** — ChatWidget + Ollama SSE 流式 + zod 输入验证 + rate limiting
+6. **10语言切换** — zh-CN/en/zh-TW/ja/ko/fr/de/es/pt-BR/ar
+7. **dark/light 主题** — CSS 变量 + Context Provider + 平滑过渡
+8. **响应式设计** — sm/md/lg 三断点 + 移动端菜单
+
+## AI Family 成员
+
+| 成员 | 代号 | 角色 |
+|------|------|------|
+| Meta-Oracle | 元·神谕 | 自适应决策引擎 |
+| Bolero | 博·雷洛 | 个性化推荐引擎 |
+| Master | 大·师 | 代码质量优化大师 |
+| Sentinel | 哨·兵 | 全程安全监控 |
+| Prophet | 预·言 | 趋势预测引擎 |
+| Max-代码 | 极·代码 | 50+端点API后端 |
+| chuping | 触·屏 | 去界面化AI助手 |
+| FFFFFFF | 七合工坊 | 4-in-1 Workstation |
+
+## 项目架构
+
+```
+app/
+├── page.tsx              ← Client Entry (ThemeProvider + I18nProvider + NewYorkerSpline)
+├── layout.tsx            ← Root Layout (zh-CN, Geist font, Analytics)
+├── globals.css           ← Tailwind 4 + YYC³ 主题变量
+└── api/chat/route.ts     ← Ollama SSE API (zod验证 + rate limiting)
+
+components/
+├── new-yorker-spline.tsx ← 28行组装入口
+├── lib/                  ← constants.ts + effects.tsx
+├── layout/               ← navbar.tsx (Navbar/ThemeToggle/LanguageSwitcher/ScrollProgress)
+├── sections/             ← hero/philosophy/scenario/architecture/ai-family/footer
+├── chat-widget.tsx       ← Ollama 聊天组件
+└── ui/                   ← 60+ shadcn/ui 组件
+
+locales/                  ← 10语言 × 79键 (zh-CN 权威源)
+hooks/                    ← use-mobile.ts + use-toast.ts
+lib/                      ← i18n-client.ts + utils.ts
+```
+
+---
+
+<div align="center">
+
+> 「***YanYuCloudCube***」
+> 「***<admin@0379.email>***」
+> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
+> 「***All things converge in cloud pivot; Deep stacks ignite a new era of intelligence***」
+
+**© 2025-2026 YYC³ Team. All Rights Reserved.**
+</div>

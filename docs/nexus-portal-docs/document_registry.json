@@ -1,0 +1,524 @@
+{
+  "export_time": "2026-05-03T05:26:43.473263",
+  "project": "YYC³ Nexus Portal",
+  "project_description": "言渝云枢 · 智能交互门户 — YYC³ AI Family 3D交互展示门户",
+  "project_version": "0.1.0",
+  "framework": "Next.js 16.2.4 + React 19.2.5 + TypeScript 6.0.3",
+  "i18n_engine": "自研纯函数翻译体系 (10 locales)",
+  "template_version": "v3.1.0",
+  "total_documents": 46,
+  "quality_gates": {
+    "typescript": "0 errors",
+    "eslint": "0 errors",
+    "vitest": "81/81 passed",
+    "build": "webpack compiled"
+  },
+  "documents": {
+    "00-项目总览索引/项目总览手册": {
+      "file_name": "项目总览手册",
+      "description": "YYC³ Nexus Portal 立项核心依据与目标范围",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "项目总览",
+        "立项"
+      ],
+      "directory": "00-项目总览索引"
+    },
+    "00-项目总览索引/文档架构导航": {
+      "file_name": "文档架构导航",
+      "description": "Nexus Portal 文档体系导航与索引",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "文档索引",
+        "导航"
+      ],
+      "directory": "00-项目总览索引"
+    },
+    "00-项目总览索引/快速开始指南": {
+      "file_name": "快速开始指南",
+      "description": "项目快速启动：环境搭建、依赖安装、开发运行",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "快速开始",
+        "开发指南"
+      ],
+      "directory": "00-项目总览索引"
+    },
+    "00-项目总览索引/核心概念词典": {
+      "file_name": "核心概念词典",
+      "description": "五高五标五化五维、i18n体系、AI Family等核心概念",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "术语",
+        "概念"
+      ],
+      "directory": "00-项目总览索引"
+    },
+    "00-项目总览索引/版本更新日志": {
+      "file_name": "版本更新日志",
+      "description": "Nexus Portal 版本迭代与变更记录",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "变更日志",
+        "版本"
+      ],
+      "directory": "00-项目总览索引"
+    },
+    "01-启动规划阶段/项目章程与愿景": {
+      "file_name": "项目章程与愿景",
+      "description": "YYC³言渝云枢品牌定位与Portal愿景",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "章程",
+        "愿景"
+      ],
+      "directory": "01-启动规划阶段"
+    },
+    "01-启动规划阶段/项目范围说明书": {
+      "file_name": "项目范围说明书",
+      "description": "Nexus Portal 3D交互门户范围边界",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "范围",
+        "边界"
+      ],
+      "directory": "01-启动规划阶段"
+    },
+    "01-启动规划阶段/项目里程碑计划": {
+      "file_name": "项目里程碑计划",
+      "description": "MVP→i18n→AI Chat→主题系统→部署各阶段",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "里程碑",
+        "计划"
+      ],
+      "directory": "01-启动规划阶段"
+    },
+    "01-启动规划阶段/业务需求分析": {
+      "file_name": "业务需求分析",
+      "description": "品牌展示+AI交互+多语言支持核心需求",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "需求",
+        "业务"
+      ],
+      "directory": "01-启动规划阶段"
+    },
+    "01-启动规划阶段/用户需求调研报告": {
+      "file_name": "用户需求调研报告",
+      "description": "目标用户（开发者/客户/合作伙伴）分析",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "用户调研",
+        "分析"
+      ],
+      "directory": "01-启动规划阶段"
+    },
+    "01-启动规划阶段/产品需求文档PRD": {
+      "file_name": "产品需求文档PRD",
+      "description": "Hero/Philosophy/Scenario/Architecture/AI Family功能规格",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "PRD",
+        "功能规格"
+      ],
+      "directory": "01-启动规划阶段"
+    },
+    "02-项目设计阶段/系统架构总览图": {
+      "file_name": "系统架构总览图",
+      "description": "Next.js 16 + React 19 + TypeScript 6 全栈架构",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "架构",
+        "系统设计"
+      ],
+      "directory": "02-项目设计阶段"
+    },
+    "02-项目设计阶段/四层架构设计": {
+      "file_name": "四层架构设计",
+      "description": "评估层/转型层/规范层/架构层四层体系",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "四层架构",
+        "分层设计"
+      ],
+      "directory": "02-项目设计阶段"
+    },
+    "02-项目设计阶段/技术选型论证报告": {
+      "file_name": "技术选型论证报告",
+      "description": "Next.js/Spline/Framer Motion/Tailwind CSS/shadcn选型依据",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "技术选型",
+        "论证"
+      ],
+      "directory": "02-项目设计阶段"
+    },
+    "02-项目设计阶段/i18n国际化架构设计": {
+      "file_name": "i18n国际化架构设计",
+      "description": "自研10语言纯函数翻译体系设计",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "i18n",
+        "国际化"
+      ],
+      "directory": "02-项目设计阶段"
+    },
+    "02-项目设计阶段/AI集成架构设计": {
+      "file_name": "AI集成架构设计",
+      "description": "Ollama/Qwen3:32B本地推理+SSE流式响应架构",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "AI",
+        "Ollama"
+      ],
+      "directory": "02-项目设计阶段"
+    },
+    "02-项目设计阶段/主题系统设计": {
+      "file_name": "主题系统设计",
+      "description": "dark/light双主题+CSS变量+Context Provider",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "主题",
+        "UI"
+      ],
+      "directory": "02-项目设计阶段"
+    },
+    "02-项目设计阶段/组件架构设计": {
+      "file_name": "组件架构设计",
+      "description": "sections/layout/lib/effects/ui五层组件体系",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "组件",
+        "架构"
+      ],
+      "directory": "02-项目设计阶段"
+    },
+    "02-项目设计阶段/AI Family成员矩阵设计": {
+      "file_name": "AI Family成员矩阵设计",
+      "description": "8位AI智能体数据结构与展示设计",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "AI Family",
+        "数据设计"
+      ],
+      "directory": "02-项目设计阶段"
+    },
+    "02-项目设计阶段/3D交互设计": {
+      "file_name": "3D交互设计",
+      "description": "Spline 3D场景+Canvas粒子场+视差动画设计",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "3D",
+        "交互"
+      ],
+      "directory": "02-项目设计阶段"
+    },
+    "03-开发实施阶段/开发环境搭建指南": {
+      "file_name": "开发环境搭建指南",
+      "description": "Node.js 22+pnpm+Next.js 16环境配置",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "环境搭建",
+        "开发"
+      ],
+      "directory": "03-开发实施阶段"
+    },
+    "03-开发实施阶段/多环境配置规范": {
+      "file_name": "多环境配置规范",
+      "description": "development/production/Docker环境隔离",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "环境配置",
+        "规范"
+      ],
+      "directory": "03-开发实施阶段"
+    },
+    "03-开发实施阶段/Git工作流规范": {
+      "file_name": "Git工作流规范",
+      "description": "main/develop分支管理与PR流程",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "Git",
+        "工作流"
+      ],
+      "directory": "03-开发实施阶段"
+    },
+    "03-开发实施阶段/代码提交规范": {
+      "file_name": "代码提交规范",
+      "description": "Conventional Commits提交信息格式",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "提交规范",
+        "Git"
+      ],
+      "directory": "03-开发实施阶段"
+    },
+    "03-开发实施阶段/TypeScript编码规范": {
+      "file_name": "TypeScript编码规范",
+      "description": "strict模式+ESLint+组件拆分规范",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "TypeScript",
+        "编码规范"
+      ],
+      "directory": "03-开发实施阶段"
+    },
+    "03-开发实施阶段/i18n开发规范": {
+      "file_name": "i18n开发规范",
+      "description": "zh-CN权威源→en→其他语言的翻译流程",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "i18n",
+        "开发规范"
+      ],
+      "directory": "03-开发实施阶段"
+    },
+    "04-测试审核阶段/测试策略总纲": {
+      "file_name": "测试策略总纲",
+      "description": "Vitest+Testing Library测试体系",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "测试",
+        "策略"
+      ],
+      "directory": "04-测试审核阶段"
+    },
+    "04-测试审核阶段/i18n测试规范": {
+      "file_name": "i18n测试规范",
+      "description": "10语言键完整性/空值/命名空间测试",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "i18n测试",
+        "规范"
+      ],
+      "directory": "04-测试审核阶段"
+    },
+    "04-测试审核阶段/API测试规范": {
+      "file_name": "API测试规范",
+      "description": "Chat API zod验证+rate limiting测试",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "API测试",
+        "规范"
+      ],
+      "directory": "04-测试审核阶段"
+    },
+    "04-测试审核阶段/代码质量审核标准": {
+      "file_name": "代码质量审核标准",
+      "description": "TSC 0 errors + ESLint 0 errors + Tests 100% pass",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "质量审核",
+        "标准"
+      ],
+      "directory": "04-测试审核阶段"
+    },
+    "04-测试审核阶段/质量门禁标准": {
+      "file_name": "质量门禁标准",
+      "description": "TypeScript/ESLint/Vitest/Build四道门禁",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "门禁",
+        "CI/CD"
+      ],
+      "directory": "04-测试审核阶段"
+    },
+    "04-测试审核阶段/组件测试覆盖标准": {
+      "file_name": "组件测试覆盖标准",
+      "description": "核心模块lib/ 100% + 组件 > 85%",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "覆盖率",
+        "测试"
+      ],
+      "directory": "04-测试审核阶段"
+    },
+    "05-交付部署阶段/Docker部署方案": {
+      "file_name": "Docker部署方案",
+      "description": "多阶段构建+standalone输出+docker-compose",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "Docker",
+        "部署"
+      ],
+      "directory": "05-交付部署阶段"
+    },
+    "05-交付部署阶段/CI/CD流水线配置": {
+      "file_name": "CI/CD流水线配置",
+      "description": "GitHub Actions质量门禁+Docker构建",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "CI/CD",
+        "GitHub Actions"
+      ],
+      "directory": "05-交付部署阶段"
+    },
+    "05-交付部署阶段/安全头配置说明": {
+      "file_name": "安全头配置说明",
+      "description": "CSP/HSTS/X-Frame-Options安全头配置",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "安全",
+        "配置"
+      ],
+      "directory": "05-交付部署阶段"
+    },
+    "05-交付部署阶段/交付物清单": {
+      "file_name": "交付物清单",
+      "description": "源码+Docker镜像+文档+测试报告",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "交付物",
+        "清单"
+      ],
+      "directory": "05-交付部署阶段"
+    },
+    "05-交付部署阶段/交付验收标准": {
+      "file_name": "交付验收标准",
+      "description": "四道质量门禁全部通过即验收",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "验收",
+        "标准"
+      ],
+      "directory": "05-交付部署阶段"
+    },
+    "06-运维保障阶段/运维策略总纲": {
+      "file_name": "运维策略总纲",
+      "description": "Docker健康检查+自动重启策略",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "运维",
+        "策略"
+      ],
+      "directory": "06-运维保障阶段"
+    },
+    "06-运维保障阶段/监控告警方案": {
+      "file_name": "监控告警方案",
+      "description": "容器健康状态+服务可用性监控",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "监控",
+        "告警"
+      ],
+      "directory": "06-运维保障阶段"
+    },
+    "07-安全合规保障/安全开发规范": {
+      "file_name": "安全开发规范",
+      "description": "zod输入验证+rate limiting+无硬编码密钥",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "安全",
+        "开发规范"
+      ],
+      "directory": "07-安全合规保障"
+    },
+    "07-安全合规保障/安全头与CSP策略": {
+      "file_name": "安全头与CSP策略",
+      "description": "Content-Security-Policy配置详解",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "CSP",
+        "安全头"
+      ],
+      "directory": "07-安全合规保障"
+    },
+    "08-AI Family管理/AI Family成员矩阵": {
+      "file_name": "AI Family成员矩阵",
+      "description": "Meta-Oracle/Bolero/Master/Sentinel/Prophet/Max-Code/chuping/FFFFFFF",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "AI Family",
+        "成员"
+      ],
+      "directory": "08-AI Family管理"
+    },
+    "08-AI Family管理/AI集成接口规范": {
+      "file_name": "AI集成接口规范",
+      "description": "Ollama SSE流式接口+Chat API规范",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "AI接口",
+        "Ollama"
+      ],
+      "directory": "08-AI Family管理"
+    },
+    "08-AI Family管理/本地推理部署指南": {
+      "file_name": "本地推理部署指南",
+      "description": "Qwen3:32B本地模型部署与配置",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "本地推理",
+        "Qwen3"
+      ],
+      "directory": "08-AI Family管理"
+    },
+    "09-智能演进优化/持续改进计划": {
+      "file_name": "持续改进计划",
+      "description": "测试覆盖率提升+组件文档+E2E测试",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "改进",
+        "优化"
+      ],
+      "directory": "09-智能演进优化"
+    },
+    "09-智能演进优化/i18n扩展计划": {
+      "file_name": "i18n扩展计划",
+      "description": "新增语言接入流程与质量保障",
+      "version": "v3.1.0",
+      "status": "published",
+      "tags": [
+        "i18n",
+        "扩展"
+      ],
+      "directory": "09-智能演进优化"
+    }
+  }
+}

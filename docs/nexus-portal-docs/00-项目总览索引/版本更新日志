@@ -1,0 +1,71 @@
+---
+file: 版本更新日志.md
+description: YYC³ Nexus Portal 版本更新记录
+author: YanYuCloudCube Team <admin@0379.email>
+version: v3.1.0
+created: 2026-05-03
+updated: 2026-05-03
+status: published
+tags: [变更日志],[版本]
+category: nexus-portal-docs
+language: zh-CN
+---
+
+> ***YanYuCloudCube***
+> *言启象限 | 语枢未来*
+> ***Words Initiate Quadrants, Language Serves as Core for Future***
+> *万象归元于云枢 | 深栈智启新纪元*
+> ***All things converge in cloud pivot; Deep stacks ignite a new era of intelligence***
+
+---
+
+# 版本更新日志
+
+## 核心理念
+
+**五高架构**：高可用 | 高性能 | 高安全 | 高扩展 | 高智能
+**五标体系**：标准化 | 规范化 | 自动化 | 可视化 | 智能化
+**五化转型**：流程化 | 数字化 | 生态化 | 工具化 | 服务化
+**五维评估**：时间维 | 空间维 | 属性维 | 事件维 | 关联维
+
+---
+
+## v0.1.0 — 2026-05-03
+
+### 新增
+- Next.js 16 + React 19 + TypeScript 6 项目架构
+- Spline 3D Hero 场景 + Canvas 粒子动画
+- Framer Motion 动画系统（视差/打字机/数字递增/滚动进度）
+- 10语言 i18n 自研翻译体系（79键/语言）
+- dark/light 双主题系统
+- AI Chat（Ollama Qwen3:32B + SSE 流式）
+- 8位 AI Family 成员矩阵展示
+- 四层架构体系展示
+- shadcn/ui 60+ 组件库
+- Docker + GitHub Actions CI/CD
+- 安全头配置（CSP/HSTS/X-Frame-Options）
+
+### 修复
+- 17个 TypeScript 编译错误
+- ESLint 9.x 配置缺失 → eslint.config.mjs
+- CI/CD grep 过滤掩盖错误
+- Turbopack 中文路径崩溃 → webpack 构建
+- Chat API 无输入验证 → zod schema
+- Chat API 无 rate limiting → 内存级限流
+
+### 优化
+- 主组件 680行 → 拆分为 7 模块 + 28 行入口
+- 测试 32 → 81 个（5个测试文件）
+- package.json 名称修正为 yyc3-nexus-portal
+
+---
+
+<div align="center">
+
+> 「***YanYuCloudCube***」
+> 「***<admin@0379.email>***」
+> 「***Words Initiate Quadrants, Language Serves as Core for the Future***」
+> 「***All things converge in cloud pivot; Deep stacks ignite a new era of intelligence***」
+
+**© 2025-2026 YYC³ Team. All Rights Reserved.**
+</div>

@@ -23,11 +23,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
         with:
-          version: latest
+          version: 10
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
+      - run: pnpm approve-builds sharp unrs-resolver
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm exec tsc --noEmit --pretty
@@ -43,11 +44,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
         with:
-          version: latest
+          version: 10
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
+      - run: pnpm approve-builds sharp unrs-resolver
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
         env:

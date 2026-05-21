@@ -1,4 +1,6 @@
 const isDev = process.env.NODE_ENV !== "production"
+const BUILD_MODE = process.env.BUILD_MODE || "standalone"
+const isStatic = BUILD_MODE === "export"
 
 const ContentSecurityPolicy = isDev
   ? undefined
@@ -27,12 +29,15 @@ const securityHeaders = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: process.env.NODE_ENV === "production" ? "standalone" : undefined,
+  output: isStatic ? "export" : (process.env.NODE_ENV === "production" ? "standalone" : undefined),
+  trailingSlash: isStatic,
   images: {
+    unoptimized: isStatic,
     formats: ["image/avif", "image/webp"],
     remotePatterns: [{ protocol: "https", hostname: "prod.spline.design" }],
   },
   async headers() {
+    if (isStatic) return []
     return [{ source: "/(.*)", headers: securityHeaders }]
   },
   poweredByHeader: false,

@@ -12,7 +12,12 @@ export const metadata: Metadata = {
   keywords: ['YYC³', 'YanYuCloudCube', 'AI', '智能应用', '云原生', '言渝云枢'],
   authors: [{ name: 'YanYuCloudCube Team', url: 'https://0379.email' }],
   icons: {
-    icon: '/yyc3-dist/favicon.ico',
+    icon: [
+      { url: '/yyc3-dist/favicon.ico', sizes: 'any' },
+      { url: '/yyc3-dist/yanyu_cloud_32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/yyc3-dist/yanyu_cloud_16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: '/yyc3-dist/yanyu_cloud_192x192.png',
   },
 }
 

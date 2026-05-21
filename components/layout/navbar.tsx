@@ -1,7 +1,7 @@
 "use client"
 
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion"
-import { Cloud, Globe, Menu, Moon, Sun, X } from "lucide-react"
+import { Globe, Menu, Moon, Sun, X } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 
 import { useI18n } from "@/components/i18n-provider"
@@ -82,8 +82,8 @@ function Navbar() {
     <motion.header initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.6, ease: "easeOut" }} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 yyc-nav ${scrolled ? "bg-black/80 backdrop-blur-xl shadow-lg shadow-black/20" : "bg-transparent"}`}>
       <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center">
-            <Cloud className="w-5 h-5 text-white" />
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center overflow-hidden">
+            <img src="/yyc3-dist/yanyu_cloud_128x128.png" alt="YYC³" className="w-full h-full object-contain" />
           </div>
           <span className="text-white font-bold text-lg tracking-tight">{BRAND.name}</span>
           <span className="hidden sm:inline text-white/40 text-xs tracking-widest uppercase ml-2">{BRAND.fullName}</span>

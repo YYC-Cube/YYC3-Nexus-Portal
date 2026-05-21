@@ -1,7 +1,5 @@
 "use client"
 
-import { Cloud } from "lucide-react"
-
 import { useI18n } from "@/components/i18n-provider"
 import { BRAND } from "@/components/lib/constants"
 
@@ -14,8 +12,8 @@ function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex flex-col items-center md:items-start gap-3">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center">
-                <Cloud className="w-5 h-5 text-white" />
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center overflow-hidden">
+                <img src="/yyc3-dist/yanyu_cloud_128x128.png" alt="YYC³" className="w-full h-full object-contain" />
               </div>
               <span className="text-white font-bold text-lg">{BRAND.name}</span>
             </div>

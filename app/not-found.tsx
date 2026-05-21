@@ -1,6 +1,5 @@
 "use client"
 
-import { Cloud } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 
@@ -9,8 +8,8 @@ export default function NotFound() {
     <main className="min-h-screen bg-black flex items-center justify-center px-6">
       <div className="text-center">
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500 to-cyan-500 mb-8">
-            <Cloud className="w-8 h-8 text-white" />
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500 to-cyan-500 mb-8 overflow-hidden">
+            <img src="/yyc3-dist/yanyu_cloud_128x128.png" alt="YYC³" className="w-full h-full object-contain" />
           </div>
         </motion.div>
         <motion.h1 className="text-8xl font-bold bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.1 }}>

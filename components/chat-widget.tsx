@@ -1,7 +1,7 @@
 "use client"
 
 import { AnimatePresence, motion } from "framer-motion"
-import { MessageCircle, Send, X } from "lucide-react"
+import { Send, X } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 
 const SYSTEM_PROMPT = `你是 YYC³ Nexus Portal 的 AI 助手，基于 Qwen3:32B 本地推理引擎。
@@ -106,7 +106,9 @@ export function ChatWidget() {
           >
             <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-gradient-to-r from-violet-600/20 to-cyan-600/20">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                <div className="w-6 h-6 rounded-md bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center overflow-hidden">
+                  <img src="/yyc3-dist/yanyu_cloud_128x128.png" alt="YYC³" className="w-full h-full object-contain" />
+                </div>
                 <span className="text-white text-sm font-medium">Qwen3:32B</span>
                 <span className="text-white/30 text-xs">本地推理</span>
               </div>
@@ -126,8 +128,8 @@ export function ChatWidget() {
               {messages.map((msg, i) => (
                 <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                   <div className={`max-w-[80%] px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed ${msg.role === "user"
-                      ? "bg-gradient-to-r from-violet-600 to-cyan-600 text-white rounded-br-md"
-                      : "bg-white/5 text-white/80 rounded-bl-md"
+                    ? "bg-gradient-to-r from-violet-600 to-cyan-600 text-white rounded-br-md"
+                    : "bg-white/5 text-white/80 rounded-bl-md"
                     }`}>
                     {msg.content}
                   </div>
@@ -190,7 +192,7 @@ export function ChatWidget() {
             </motion.div>
           ) : (
             <motion.div key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
-              <MessageCircle className="w-5 h-5" />
+              <img src="/yyc3-dist/yanyu_cloud_128x128.png" alt="YYC³ AI" className="w-8 h-8 object-contain" />
             </motion.div>
           )}
         </AnimatePresence>

@@ -30,9 +30,9 @@ jobs:
           cache: pnpm
       - run: pnpm approve-builds sharp unrs-resolver
       - run: pnpm install --frozen-lockfile
-      - run: pnpm lint
+      - run: pnpm exec eslint .
       - run: pnpm exec tsc --noEmit --pretty
-      - run: pnpm test
+      - run: pnpm exec vitest run
       - run: pnpm build
 
   build-pages:

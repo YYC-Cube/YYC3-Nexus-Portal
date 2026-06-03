@@ -96,14 +96,14 @@ BUILD_MODE=export pnpm build    # 静态导出 (GitHub Pages 模式)
 
 | 成员 | 代号 | 角色 | 能力域 |
 |:-----|:-----|:-----|:-------|
-| **Meta-Oracle** | 元神谕 | 自适应决策引擎 | 多模态推理 + 策略优化 |
-| **Bolero** | 博雷洛 | 个性化推荐引擎 | 用户画像 + 智能匹配 |
-| **Master** | 大师 | 代码质量优化大师 | 静态分析 + 重构建议 |
-| **Sentinel** | 哨兵 | 全程安全监控 | 威胁检测 + 合规审计 |
-| **Prophet** | 预言 | 趋势预测引擎 | 时序分析 + 趋势预判 |
-| **Max-Code** | 极代码 | 50+端点 API 后端 | 全栈生成 + 接口编排 |
-| **chuping** | 触屏 | 去界面化 AI 助手 | 语音交互 + 无感操控 |
-| **FFFFFFF** | 七合工坊 | 4-in-1 Workstation | 多任务聚合 + 流程编排 |
+| **TianShu** | 元启·天枢 | 全局编排与决策中枢 | 推理规划 + 策略调度 |
+| **ZhiYun** | 智云·守护 | 安全审计与纵深防御 | 威胁检测 + 合规审计 |
+| **GeWu** | 格物·宗师 | 代码质量与工程标准 | 静态分析 + 质量优化 |
+| **ChuangXiang** | 创想·灵韵 | 创意生成与多模态设计 | 内容创作 + 视觉设计 |
+| **YanQi** | 言启·千行 | 意图识别与任务路由 | 意图理解 + 任务分派 |
+| **YuShu** | 语枢·万物 | LLM 数据洞察与分析 | 数据分析 + 业务洞察 |
+| **YuJian** | 预见·先知 | 趋势预测与未来洞察 | 时序分析 + 趋势预判 |
+| **ZhiYu** | 知遇·伯乐 | 个性化推荐引擎 | 用户画像 + 智能匹配 |
 
 ---
 
@@ -207,11 +207,3 @@ push/PR ──→ ⚡ Quality Gates
 <div align="center">
 
 **YanYuCloudCube** — 言启象限 · 语枢未来
-
-*Words Initiate Quadrants, Language Serves as Core for Future*
-
-*万象归元于云枢 | 深栈智启新纪元*
-
-*All things converge in cloud pivot; Deep stacks ignite a new era of intelligence*
-
-</div>

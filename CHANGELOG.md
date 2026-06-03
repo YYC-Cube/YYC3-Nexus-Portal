@@ -29,7 +29,7 @@ All notable changes to this project will be documented in this file.
 - 10语言 i18n 自研纯函数翻译体系（zh-CN/en/zh-TW/ja/ko/fr/de/es/pt-BR/ar × 79键）
 - dark/light 双主题系统（CSS 变量 + ThemeProvider + localStorage 持久化）
 - AI Chat 集成（Ollama Qwen3:32B + SSE 流式响应 + zod 输入验证）
-- 8位 AI Family 成员矩阵展示
+- 8位 AI Family 成员矩阵展示（TianShu/ZhiYun/GeWu/ChuangXiang/YanQi/YuShu/YuJian/ZhiYu）
 - 四层架构体系展示（评估层/转型层/规范层/架构层）
 - 五高五标五化五维理念展示区
 - shadcn/ui 60+ 基础组件库

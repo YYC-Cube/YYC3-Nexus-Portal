@@ -77,5 +77,5 @@ export const site: Record<string, string> = {
   "lang.switch": "언어",
   "family.label": "AI Family",
   "family.title": "AI 멤버 매트릭스",
-  "family.description": "8개 AI 에이전트가 의사결정, 추천, 품질, 보안, 예측, 백엔드, 상호작용, 협업을 커버"
+  "family.description": "8개 AI 패밀리가 지휘, 보안, 품질, 창의성, 탐색, 분석, 예측, 추천을 커버",
 }

@@ -77,5 +77,5 @@ export const site: Record<string, string> = {
   "lang.switch": "Language",
   "family.label": "AI Family",
   "family.title": "AI Member Matrix",
-  "family.description": "8 AI agents covering decision-making, personalization, quality, security, prediction, backend, interaction, and collaboration",
+  "family.description": "8 AI family members covering command, security, quality, creativity, navigation, analysis, foresight, and recommendation",
 }

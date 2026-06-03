@@ -77,5 +77,5 @@ export const site: Record<string, string> = {
   "lang.switch": "语言",
   "family.label": "AI Family",
   "family.title": "AI 成员矩阵",
-  "family.description": "8位AI智能体各司其职，覆盖决策、推荐、质量、安全、预测、后端、交互、协同全链路",
+  "family.description": "8位AI家人各司其职，覆盖总指挥、安全、质量、创意、导航、分析、预测、推荐全链路",
 }

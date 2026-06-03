@@ -194,7 +194,7 @@ complexity: intermediate
 **目标**: 展示 AI Family 8位成员 + 知识库资产 + 主题切换 + 3D场景交互
 
 **产出**:
-- `AIFamilySection` — 8位AI成员卡片 (Meta-Oracle/Bolero/Master/Sentinel/Prophet/Max-代码/chuping/FFFFFF)
+- `AIFamilySection` — 8位AI成员卡片 (TianShu/ZhiYun/GeWu/ChuangXiang/YanQi/YuShu/YuJian/ZhiYu)
 - `KnowledgeSection` — 知识库资产统计 (120+ Skills / 50+ API / 30+ MCP / 10 Languages)
 - `components/theme-provider.tsx` — ThemeProvider + useTheme Hook (dark/light)
 - ThemeToggle — Navbar 内主题切换按钮 (Moon/Sun + 旋转动画)

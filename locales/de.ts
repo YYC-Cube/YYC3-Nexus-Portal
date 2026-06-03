@@ -77,5 +77,5 @@ export const site: Record<string, string> = {
   "lang.switch": "Sprache",
   "family.label": "AI Family",
   "family.title": "KI-Member-Matrix",
-  "family.description": "8 KI-Agenten für Entscheidung, Personalisierung, Qualität, Sicherheit, Vorhersage, Backend, Interaktion und Zusammenarbeit"
+  "family.description": "8 KI-Familienmitglieder für Führung, Sicherheit, Qualität, Kreativität, Navigation, Analyse, Vorhersage und Empfehlung",
 }

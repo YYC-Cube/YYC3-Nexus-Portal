@@ -187,7 +187,7 @@ NEXUS_PORTAL_STRUCTURE = {
         "subcategories": {
             "0801-AI成员管理": {
                 "documents": [
-                    {"id": "001", "name": "AI Family成员矩阵", "desc": "Meta-Oracle/Bolero/Master/Sentinel/Prophet/Max-Code/chuping/FFFFFFF", "tags": "[AI Family],[成员]"},
+                    {"id": "001", "name": "AI Family成员矩阵", "desc": "TianShu/ZhiYun/GeWu/ChuangXiang/YanQi/YuShu/YuJian/ZhiYu", "tags": "[AI Family],[成员]"},
                     {"id": "002", "name": "AI集成接口规范", "desc": "Ollama SSE流式接口+Chat API规范", "tags": "[AI接口],[Ollama]"},
                     {"id": "003", "name": "本地推理部署指南", "desc": "Qwen3:32B本地模型部署与配置", "tags": "[本地推理],[Qwen3]"},
                 ],

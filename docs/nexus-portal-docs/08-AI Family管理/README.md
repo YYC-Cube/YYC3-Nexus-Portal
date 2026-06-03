@@ -40,7 +40,7 @@ YYC³ AI Family 8位智能体管理
 
 | 序号 | 文档名称 | 描述 | 标签 |
 |------|----------|------|------|
-| 1 | [AI Family成员矩阵](AI Family成员矩阵) | Meta-Oracle/Bolero/Master/Sentinel/Prophet/Max-Code/chuping/FFFFFFF | [AI Family],[成员] |
+| 1 | [AI Family成员矩阵](AI Family成员矩阵) | TianShu/ZhiYun/GeWu/ChuangXiang/YanQi/YuShu/YuJian/ZhiYu | [AI Family],[成员] |
 | 2 | [AI集成接口规范](AI集成接口规范) | Ollama SSE流式接口+Chat API规范 | [AI接口],[Ollama] |
 | 3 | [本地推理部署指南](本地推理部署指南) | Qwen3:32B本地模型部署与配置 | [本地推理],[Qwen3] |
 

@@ -1,0 +1,32 @@
+{
+  "name": "YYC³ Nexus Portal",
+  "short_name": "YYC³ Portal",
+  "description": "言渝云枢 · 智能交互门户 — YYC³ AI Family 3D Interactive Showcase",
+  "start_url": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "categories": ["technology", "ai", "developer-tools"],
+  "icons": [
+    { "src": "/yyc3-dist/yanyu_cloud_192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/yyc3-dist/yanyu_cloud_512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/yyc3-dist/yanyu_cloud_256x256.png", "sizes": "256x256", "type": "image/png" },
+    { "src": "/yyc3-dist/yanyu_cloud_128x128.png", "sizes": "128x128", "type": "image/png" }
+  ],
+  "screenshots": [
+    {
+      "src": "/YYC3-Family-001.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "YYC³ Nexus Portal - AI Family Overview"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

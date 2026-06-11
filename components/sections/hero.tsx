@@ -2,7 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { ArrowRight, ChevronDown, Eye } from "lucide-react"
-import { lazy, Suspense, useEffect } from "react"
+import { Suspense, lazy, useEffect } from "react"
 
 import { useI18n } from "@/components/i18n-provider"
 import { BRAND } from "@/components/lib/constants"
@@ -36,22 +36,22 @@ function HeroSection() {
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-[128px]" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[128px]" />
       </div>
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-20">
           <motion.div className="flex-1 text-center lg:text-left" initial={{ opacity: 0, x: -60 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}>
-            <motion.div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-              <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-              <span className="text-white/60 text-xs tracking-widest uppercase">{t("hero.badge")}</span>
+            <motion.div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 sm:px-4 py-1.5 mb-6 sm:mb-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-emerald-400 rounded-full animate-pulse" />
+              <span className="text-white/60 text-[10px] sm:text-xs tracking-widest uppercase">{t("hero.badge")}</span>
             </motion.div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight">
               <span className="text-white">{t("hero.title.line1")}</span><br />
               <span className="bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">{t("hero.title.line2")}</span>
             </h1>
             <p className="mt-6 text-white/50 text-sm md:text-base tracking-[0.3em] uppercase font-light">
               <TypewriterText text={BRAND.sloganEn} delay={800} speed={30} />
             </p>
-            <p className="mt-6 text-white/70 text-base md:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">{t("hero.description")}</p>
-            <div className="mt-10 flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+            <p className="mt-4 sm:mt-6 text-white/70 text-sm sm:text-base md:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">{t("hero.description")}</p>
+            <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center lg:justify-start">
               <motion.a href="#场景" className="group relative inline-flex items-center gap-2 bg-gradient-to-r from-violet-600 to-cyan-600 text-white px-8 py-3.5 rounded-full font-medium text-sm tracking-wide overflow-hidden" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                 <span className="relative z-10">{t("hero.cta.explore")}</span>
                 <ArrowRight className="relative z-10 w-4 h-4 transition-transform group-hover:translate-x-1" />

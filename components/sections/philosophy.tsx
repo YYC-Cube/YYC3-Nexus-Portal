@@ -34,7 +34,7 @@ function PhilosophySection() {
   return (
     <section id="理念" className="relative py-24 md:py-32 bg-black overflow-hidden yyc-section">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-950 to-black" />
-      <div className="relative z-10 max-w-4xl mx-auto px-6">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6">
         <ParallaxSection speed={0.15}>
           <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <span className="text-violet-400 text-xs tracking-[0.3em] uppercase">{t("philosophy.label")}</span>

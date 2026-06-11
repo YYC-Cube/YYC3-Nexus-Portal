@@ -12,15 +12,15 @@ function AIFamilySection() {
   return (
     <section id="ai-family" className="relative py-24 md:py-32 bg-black overflow-hidden yyc-section">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         <ParallaxSection speed={0.1}>
-          <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <span className="text-fuchsia-400 text-xs tracking-[0.3em] uppercase">{t("family.label")}</span>
-            <h2 className="mt-4 text-3xl md:text-4xl font-bold text-white tracking-tight">{t("family.title")}</h2>
-            <p className="mt-4 text-white/50 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">{t("family.description")}</p>
+          <motion.div className="text-center mb-12 sm:mb-16" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+            <span className="text-fuchsia-400 text-[10px] sm:text-xs tracking-[0.3em] uppercase">{t("family.label")}</span>
+            <h2 className="mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">{t("family.title")}</h2>
+            <p className="mt-3 sm:mt-4 text-white/50 text-xs sm:text-sm md:text-base max-w-2xl mx-auto leading-relaxed">{t("family.description")}</p>
           </motion.div>
         </ParallaxSection>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {AI_FAMILY_MEMBERS.map((member, index) => {
             const Icon = member.icon
             return (
@@ -62,7 +62,7 @@ function AIFamilySection() {
 function KnowledgeSection() {
   return (
     <section className="relative py-20 bg-black overflow-hidden yyc-section">
-      <div className="relative z-10 max-w-5xl mx-auto px-6">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {KNOWLEDGE_ASSETS.map((asset, index) => {
             const Icon = asset.icon

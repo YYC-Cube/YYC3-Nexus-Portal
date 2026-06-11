@@ -13,7 +13,7 @@ function ScenarioSection() {
   return (
     <section id="场景" className="relative py-24 md:py-32 bg-black overflow-hidden yyc-section">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         <ParallaxSection speed={0.1}>
           <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <span className="text-cyan-400 text-xs tracking-[0.3em] uppercase">{t("scenario.label")}</span>

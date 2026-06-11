@@ -53,3 +53,6 @@ docs/.yyc3/
 docs/YYC3-*.md
 docs/YYC3-*/
 docs/i18n-integration-context.md
+
+# design reference images
+public/image.png

@@ -4,10 +4,12 @@ import type { Locale } from "@/lib/i18n-client"
 import { LOCALE_LABELS, SUPPORTED_LOCALES, translate } from "@/lib/i18n-client"
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react"
 
+export type TFunction = (key: string, params?: Record<string, string>) => string
+
 interface I18nContextValue {
   locale: Locale
   setLocale: (locale: Locale) => void
-  t: (key: string, params?: Record<string, string>) => string
+  t: TFunction
   supportedLocales: typeof SUPPORTED_LOCALES
   localeLabels: typeof LOCALE_LABELS
 }

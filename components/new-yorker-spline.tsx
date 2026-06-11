@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic"
 
-import { ChatWidget } from "@/components/chat-widget"
+import { AIAssistant } from "@/components/ai-assistant"
 import { Navbar, ScrollProgress } from "@/components/layout/navbar"
 
 const HeroSection = dynamic(() => import("@/components/sections/hero").then((m) => ({ default: m.HeroSection })), { ssr: false })
@@ -25,7 +25,7 @@ export function NewYorkerSpline() {
       <AIFamilySection />
       <KnowledgeSection />
       <Footer />
-      <ChatWidget />
+      <AIAssistant />
     </main>
   )
 }

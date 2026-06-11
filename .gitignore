@@ -36,3 +36,20 @@ coverage/
 # IDE
 .vscode/
 .idea/
+
+# macOS
+.DS_Store
+*.DS_Store
+**/.DS_Store
+
+# pnpm workspace
+pnpm-workspace.yaml
+
+# design docs (not part of source code)
+docs/nexus-portal-docs/
+docs/nexus-portal-qa-trae-20260503/
+docs/ai-dev/
+docs/.yyc3/
+docs/YYC3-*.md
+docs/YYC3-*/
+docs/i18n-integration-context.md

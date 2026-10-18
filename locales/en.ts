@@ -112,7 +112,7 @@ export const site: Record<string, string> = {
   "architecture.wuhua.0.title": "Process-oriented",
   "architecture.wuhua.0.subtitle": "Process-oriented",
   "architecture.wuhua.0.description": "Establish clear development, testing, deployment, and maintenance processes ensuring every step follows established guidelines.",
-  "architecture.wuhua.0.tags": "Agile DevOps|Sprint Planning|Requirement Mgmt|Bug Tracking|Continuous Improvement",
+  "architecture.wuhua.0.tags": "Agile Development|DevOps|Iteration Planning|Requirement Mgmt|Bug Tracking|Continuous Improvement",
   "architecture.wuhua.1.title": "Digitalization",
   "architecture.wuhua.1.subtitle": "Digitalization",
   "architecture.wuhua.1.description": "Digitize business processes, data, and assets creating quantifiable, analyzable, and optimizable digital assets.",

@@ -1,368 +1,385 @@
-# YYC³ Nexus Portal - Developer Guide
+---
+file: DEVELOPER.md
+description: YYC³ Nexus Portal 开发者指南 — 架构、构建、国际化、测试与部署
+author: YanYuCloudCube Team <admin@0379.email>
+version: v4.0.0
+created: 2026-04-26
+updated: 2026-10-19
+status: active
+tags: [developer-guide], [architecture], [i18n], [ci-cd], [deployment]
+category: guide
+---
 
-## Overview
+<div align="center">
 
-YYC³ Nexus Portal is a 3D interactive showcase portal for the YYC³ AI Family,
-featuring a self-built i18n translation system covering 10 languages,
-built with Next.js 16 + Spline 3D + Framer Motion,
-with integrated Ollama local AI chat capabilities and full PWA support.
+# 🧊 YYC³ Nexus Portal · 开发者指南
+
+**言启象限 · 语枢未来**
+
+*Words Initiate Quadrants, Language Serves as Core for Future*
+
+*万象归元于云枢 · 深栈智启新纪元*
+
+</div>
 
 ---
 
-## 技术栈
+## 一、项目概览
 
-| 技术 | 版本 | 用途 |
-|------|------|------|
-| Next.js | 16.2.5 | React 全栈框架 (App Router + Turbopack) |
-| React | 19.2.7 | UI 渲染引擎 |
-| TypeScript | 6.x | 类型安全 |
-| Tailwind CSS | 4.x | 原子化 CSS 框架 |
-| Spline | latest | 3D 交互场景 |
-| Framer Motion | latest | 动画引擎 (视差/粒子/打字机) |
-| Ollama | qwen3:32b | 本地 LLM 推理引擎 |
-| Vitest | 4.x | 单元测试框架 |
-| Docker | latest | 容器化部署 |
+YYC³ Nexus Portal 是 YYC³ AI Family 的 3D 沉浸式智能交互门户。核心特征：
+
+- **双模式构建**：一套代码同时产出 GitHub Pages 静态站（`output: "export"`）与 Docker standalone 服务
+- **自研纯函数 i18n**：10 种语言 × 214 键，零运行时引擎依赖，SSR/客户端输出一致
+- **AI 浮窗**：Ollama / OpenAI 兼容接口 + SSE 流式；静态站自动降级为本地模拟响应
+- **PWA**：Service Worker 三种缓存策略 + 完整 manifest
+
+> **代码为准绳**：本文档所有版本号、测试数量、路径均取自当前仓库实际状态。
 
 ---
 
-## 项目结构
+## 二、技术栈
+
+| 技术 | 实际版本 | 用途 |
+| ------ | --------- | ------ |
+| Next.js | 16.4.2 | App Router + Static Export / Standalone（构建使用 `--webpack`） |
+| React | 19.2.7 | UI 渲染（Client Components + 动态导入） |
+| TypeScript | 6.0.3 | strict mode + bundler resolution |
+| Tailwind CSS | 4.2.4 | 原子化 CSS + CSS 变量双主题 |
+| shadcn/ui + Radix UI | 59 个组件 / 27 个 Radix 原语 | 无障碍组件基础 |
+| Framer Motion | 12.40.0 | 视差 / 粒子 / 打字机动画 |
+| Spline | `@splinetool/react-spline` | 3D Hero 场景 |
+| Zod | 4.4.3 | API 输入 Schema 校验 |
+| Ollama | qwen3:32b（可选） | 本地 LLM 推理 |
+| Vitest + jsdom | 5.0.5 / 30.1.3 | 单元与组件测试 |
+| pnpm | 10.34.7（`packageManager` 锁定） | 包管理 |
+
+**运行环境要求**：Node.js `>=22 <23`、pnpm `>=10`（见 `package.json#engines`）。
+
+---
+
+## 三、架构与页面组装
+
+### 3.1 组件组装链路
+
+```mermaid
+flowchart TD
+    A["app/layout.tsx<br/>RootLayout / SEO / PWA / SW 注册"] --> B["app/page.tsx"]
+    B --> C["ThemeProvider<br/>dark / light"]
+    C --> D["I18nProvider<br/>React Context"]
+    D --> E["NewYorkerSpline<br/>components/new-yorker-spline.tsx"]
+    E --> F["Navbar ×1"]
+    E --> G["Sections ×5<br/>hero / philosophy / scenario / architecture / ai-family"]
+    E --> H["Footer"]
+    E --> I["AIAssistant<br/>浮窗可拖拽"]
+    E --> J["ParticleField / TypewriterText / ScrollProgress"]
+```
+
+`app/page.tsx` 为客户端入口，`app/layout.tsx` 为服务端布局（元数据与 PWA 注入）。
+
+### 3.2 双构建模式
+
+```mermaid
+flowchart LR
+    S["同一套源码"] --> M{"BUILD_MODE"}
+    M -->|export| E1["next build → out/"]
+    E1 --> E2["GitHub Pages<br/>portal.yyc3.top"]
+    M -->|standalone / 默认| S1[".next/standalone"]
+    S1 --> S2["Docker<br/>:3200"]
+    S1 --> S3["含 /api/chat 与响应头安全策略"]
+```
+
+| 能力 | Standalone / Docker | GitHub Pages（静态导出） |
+| ------ | -------------------- | ------------------------ |
+| `/api/chat` 服务端代理 | ✅ 可用 | ❌ 不存在（POST 返回 405） |
+| AI 对话 | ✅ 真实 SSE 流式 | ⚠️ 自动降级为本地模拟响应 |
+| CSP / HSTS / X-Frame-Options 响应头 | ✅ `next.config.ts` 注入 | ⚠️ 平台不支持自定义响应头；仅 HTML `<meta>` CSP 兜底 |
+| `frame-ancestors` | ✅ | ❌ meta 形式不支持该指令 |
+| `/_vercel/insights` 分析 | ✅ 渲染 | ⛔ 已按构建模式关闭（避免 404） |
+| 图片优化 | ✅ avif/webp | ⚠️ `unoptimized` |
+
+> 静态模式的 CSP 兜底通过 `app/layout.tsx` 注入 `<meta http-equiv="Content-Security-Policy">`，
+> 指令集与 `lib/csp.ts` 共用同一常量，避免配置漂移。
+
+---
+
+## 四、项目结构
 
 ```
-YYC³ Nexus Portal/
+YYC3-Nexus-Portal/
 ├── app/
-│   ├── api/chat/route.ts             # Ollama SSE 对话代理 (限流+Zod校验)
-│   ├── globals.css                   # Tailwind v4 + 移动端安全区 + 主题 CSS变量
-│   ├── layout.tsx                    # 根布局 (SSR元数据 + PWA manifest + SW注册 + Vercel Analytics)
-│   └── page.tsx                      # 入口 (ThemeProvider → I18nProvider → NewYorkerSpline)
+│   ├── api/chat/route.ts         # Ollama SSE 代理（限流 + Zod 校验）
+│   ├── globals.css               # Tailwind v4 + 主题变量 + 安全区
+│   ├── layout.tsx                # 根布局（元数据 / PWA / SW / 静态 CSP 兜底）
+│   ├── page.tsx                  # 客户端入口（Theme → I18n → 主页面）
+│   ├── robots.ts                 # robots.txt
+│   └── sitemap.ts                # sitemap.xml
 ├── components/
-│   ├── new-yorker-spline.tsx         # 核心页面组件 (懒加载子页面)
-│   ├── sections/                     # 各页面区块
-│   │   ├── hero.tsx                  # 首屏 (粒子背景 + Spline 3D + 打字机)
-│   │   ├── philosophy.tsx            # 五高/五标/五化/五维 (AnimatedCounter)
-│   │   ├── scenario.tsx              # 4大应用场景卡片
-│   │   ├── architecture.tsx          # 五维驱动架构体系 (Tab切换 + 20张可展开卡片)
-│   │   ├── ai-family.tsx             # 8位AI成员 + 知识库资产
-│   │   └── footer.tsx                # 品牌信息 + 版权
-│   ├── ai-assistant/                 # AI 浮窗模块
-│   │   ├── AIAssistant.tsx           # 主组件 (拖拽 + 标签切换 + 国际化)
-│   │   ├── components/               # 14个子组件
-│   │   │   ├── FloatingButton.tsx    # 浮动入口按钮 (安全区适配)
-│   │   │   ├── PanelHeader.tsx       # 头部 (模型状态 + 语言切换器)
-│   │   │   ├── ChatPanel.tsx         # 对话面板
-│   │   │   ├── CommandsPanel.tsx     # 10条快捷命令
-│   │   │   ├── PromptsPanel.tsx      # 5个提示词预设
-│   │   │   ├── SettingsPanel.tsx     # API Key + 模型管理 + 参数调节
-│   │   │   └── ...
-│   │   ├── hooks/                    # 4个自定义Hook
-│   │   ├── constants/                # 命令 + 提示词数据
-│   │   └── types.ts                  # TypeScript 类型定义
-│   ├── layout/navbar.tsx             # 导航栏 (滚动毛玻璃 + 移动菜单 + 语言切换)
-│   ├── i18n-provider.tsx             # React Context i18n Provider (10语言)
-│   ├── theme-provider.tsx            # 主题切换 Provider (dark/light)
-│   └── ui/                           # shadcn/ui 组件库
+│   ├── new-yorker-spline.tsx     # 主页面组装
+│   ├── ai-assistant/             # AI 浮窗
+│   │   ├── AIAssistant.tsx
+│   │   ├── components/           # 14 个子组件（含 FloatingButton / ChatPanel / SettingsPanel）
+│   │   ├── hooks/                # 6 个 Hook（useChat / useAIConfig / useModelProvider 等）
+│   │   ├── constants/            # 命令与提示词数据
+│   │   └── types.ts
+│   ├── sections/                 # hero / philosophy / scenario / architecture / ai-family / footer
+│   ├── layout/navbar.tsx         # 导航栏（毛玻璃 + 移动菜单 + 语言切换）
+│   ├── i18n-provider.tsx         # i18n Context
+│   ├── theme-provider.tsx        # 主题 Context
+│   └── ui/                       # 59 个 shadcn/ui 组件
 ├── lib/
-│   ├── i18n-client.ts               # 纯函数翻译系统 (translate + 类型导出)
-│   └── utils.ts                     # cn() 工具函数
-├── locales/                          # 10语言翻译文件 (214 keys/语言)
-│   ├── zh-CN.ts                      # 权威源 (简体中文, 214 keys)
-│   ├── en.ts                         # English (主翻译, 与zh-CN对齐)
-│   ├── zh-TW.ts / ja.ts / ko.ts     # CJK
-│   ├── fr.ts / de.ts / es.ts        # 欧洲
-│   ├── pt-BR.ts                      # 葡萄牙语(巴西)
-│   └── ar.ts                         # العربية (RTL)
-├── __tests__/
-│   ├── setup.ts                      # Vitest 测试配置
-│   ├── components.test.tsx           # 基础组件测试
-│   ├── architecture.test.tsx         # 五维架构组件测试 (8 cases)
-│   ├── ai-assistant.test.tsx         # AI助手全面测试 (57 cases)
-│   ├── i18n.test.ts                  # 国际化测试 (三层验证策略)
-│   ├── api.test.ts                   # API路由测试
-│   ├── core.test.ts                  # 核心模块测试
-│   └── ratelimit.test.ts             # 限流机制测试
+│   ├── i18n-client.ts            # 纯函数翻译 + 语言注册
+│   ├── csp.ts                    # CSP 指令单一源
+│   └── utils.ts                  # cn() 等工具
+├── locales/                      # 10 语言，各 214 键
+├── __tests__/                    # 7 个测试文件，167 用例
 ├── public/
-│   ├── sw.js                         # Service Worker (3种缓存策略)
-│   ├── manifest.json                 # PWA清单 (10种图标尺寸 + screenshots)
-│   └── yyc3-dist/                    # YYC³ 品牌图标集 (8种尺寸)
-├── .github/workflows/ci.yml          # CI/CD (lint + tsc + build + docker)
-├── Dockerfile                        # 多阶段构建
-├── docker-compose.yml                # 端口3200 + 健康检查
-├── vitest.config.ts                  # 测试配置
-├── next.config.mjs                   # 安全头 + CSP + PWA 优化
-└── docs/                             # YYC³ 标准文档体系
+│   ├── sw.js                     # Service Worker（3 种缓存策略）
+│   ├── manifest.json             # PWA 清单
+│   └── yyc3-dist/                # 品牌图标集
+├── docs/                         # 开发者文档 + 文档注册表
+├── .github/workflows/            # ci.yml + codeql.yml
+├── next.config.ts                # 双模式输出 + 安全头
+├── vitest.config.ts              # 测试与覆盖率配置
+├── Dockerfile / docker-compose.yml
+└── public/CNAME                  # portal.yyc3.top（Pages 自定义域名）
 ```
 
 ---
 
-## 快速开始
-
-### 前置要求
-
-- Node.js >= 18
-- pnpm >= 8
-- Ollama (可选，用于 AI 对话功能)
-
-### 安装与启动
+## 五、快速开始
 
 ```bash
+# 前置：Node.js 22.x、pnpm 10.x
 pnpm install
-pnpm dev      # 开发服务器 (端口3000+，冲突自动递增)
-pnpm build    # 生产构建
-pnpm start    # 生产启动
+
+pnpm dev                        # 开发服务器（3000 起，冲突自动递增）
+pnpm build                      # Standalone 生产构建
+BUILD_MODE=export pnpm build    # 静态导出到 out/
+pnpm start                      # 启动 standalone 服务
 ```
 
-指定端口启动：
+指定端口（YYC³ 规范：开发 3030 起）：
+
 ```bash
-PORT=3146 pnpm dev
+PORT=3030 pnpm dev
 ```
 
-远程仓库:
-```bash
-git remote add developer https://github.com/YYC-Cube/YYC3-Portfolio.git
-```
-
-### AI 对话 (可选)
+启动本地 Ollama（可选）：
 
 ```bash
 ollama pull qwen3:32b
-ollama serve
+ollama serve    # 默认 http://localhost:11434
 ```
 
-对话组件自动连接 `http://localhost:11434`。
-
-### Docker 部署
-
-```bash
-docker compose up -d
-```
-
-端口 3200 (YYC³ 生产规范: 3200-3500)。
-
-### 代码检查
-
-```bash
-pnpm lint              # ESLint 审查
-npx tsc --noEmit       # TypeScript 检查
-pnpm test              # 158 测试用例
-pnpm test -- --coverage # 覆盖率报告
-```
+仓库地址：`https://github.com/YYC-Cube/YYC3-Nexus-Portal.git`
 
 ---
 
-## i18n 国际化体系
+## 六、国际化体系
 
-### 架构设计
+### 6.1 数据链路
 
-```
-locales/*.ts (10语言扁平翻译数据, 214 keys/语言)
-        ↓ import
-lib/i18n-client.ts
-  ├── translate(locale, key, params?)  ← 纯函数，同步，零副作用
-  ├── SUPPORTED_LOCALES               ← 10种语言列表
-  └── LOCALE_LABELS                    ← 语言显示名
-        ↓ import
-components/i18n-provider.tsx
-  ├── I18nProvider (React Context)
-  │   ├── useState("zh-CN")           ← SSR + 客户端初始值一致
-  │   ├── useEffect → detectLocale()  ← localStorage + navigator 检测
-  │   └── t(key, params)              → translate(locale, key, params)
-  └── useI18n() Hook
-        ↓ useContext
-components/*.tsx
-  └── const { t, locale, setLocale } = useI18n()
+```mermaid
+flowchart TD
+    A["locales/*.ts<br/>10 × 214 扁平键值"] --> B["lib/i18n-client.ts"]
+    B --> B1["translate(locale, key, params)<br/>纯函数 / 同步 / 零副作用"]
+    B --> B2["SUPPORTED_LOCALES ×10"]
+    B --> B3["LOCALE_LABELS"]
+    B --> C["components/i18n-provider.tsx"]
+    C --> C1["useState('zh-CN')<br/>SSR 与首帧一致"]
+    C --> C2["useEffect → 本地检测<br/>localStorage / navigator"]
+    C --> C3["t(key, params)"]
+    C --> D["业务组件<br/>const { t, locale, setLocale } = useI18n()"]
 ```
 
-### 设计原则
+### 6.2 设计原则
 
 | 原则 | 实现 |
-|------|------|
-| **SSR 安全** | `translate()` 是纯函数，无引擎状态依赖，SSR/客户端输出一致 |
-| **零 Hydration 风险** | `useState("zh-CN")` 确保初始渲染 SSR 和客户端使用同一 locale |
-| **纯函数翻译** | `translate(locale, key)` 不依赖任何外部状态或异步操作 |
-| **扁平 key 直接查找** | 翻译数据保持扁平格式，无需嵌套转换 |
-| **fallback 链** | `translations[locale][key]` → `translations["zh-CN"][key]` → `key` 本身 |
+| ------ | ------ |
+| SSR 安全 | `translate()` 为纯函数，无全局状态 |
+| 零 Hydration 风险 | 初始 state 固定 `zh-CN`，挂载后再检测用户偏好 |
+| 扁平键查找 | 无需嵌套转换，O(1) 字典命中 |
+| fallback 链 | 当前语言 → `zh-CN` → 返回 key 本身 |
 
-### 翻译 Key 分布
+### 6.3 键分布（权威源 `locales/zh-CN.ts`，共 214）
 
-| 命名空间 | 数量 | 用途 |
-|----------|------|------|
-| `nav.*` | 5 | 导航栏 |
-| `hero.*` | 8 | 首屏 |
-| `philosophy.*` | 30 | 理念区 (4组×5项+统计) |
-| `scenario.*` | 12 | 场景区 |
-| `architecture.*` | 88 | 架构区 (4Tab×5卡片×4字段+描述) |
-| `ai.*` | 51 | AI 浮窗 (标题/标签/按钮/提示) |
+| 命名空间 | 键数 | 用途 |
+| ---------- | ------ | ------ |
+| `nav.*` | 5 | 导航 |
+| `hero.*` | 7 | 首屏 |
+| `philosophy.*` | 35 | 理念区（4 组 × 5 项 + 统计） |
+| `scenario.*` | 12 | 应用场景 |
+| `architecture.*` | 91 | 架构区（4 Tab × 5 卡片 × 4 字段 + 描述） |
+| `ai.*` | 55 | AI 浮窗 |
 | `family.*` | 3 | AI 成员 |
-| `footer.*` | 6 | 页脚 |
+| `footer.*` | 5 | 页脚 |
 | `lang.*` | 1 | 语言切换 |
 
-### 新增翻译流程
+### 6.4 新增翻译流程
 
-1. 在 `locales/zh-CN.ts` 添加 key（权威源）
-2. 同步更新 `locales/en.ts`
-3. 运行 `pnpm test` 验证翻译完整性 (zh-CN + en 必须对齐)
+```bash
+# 1) 在权威源新增键
+#    locales/zh-CN.ts
+# 2) 按同一键序同步 9 种语言
+# 3) 校验：键集必须与 zh-CN 完全一致
+pnpm test -- __tests__/i18n.test.ts
+```
+
+`__tests__/i18n.test.ts` 已收紧为**完全对齐**断言：任一语言缺键、多键或空值都会使 CI 失败。
+
+品牌与技术专有名词（`YYC³`、`Next.js`、`Spline`、`K8s`、`RBAC/ABAC`、`SLA`、`QPS` 等）在所有语言中保持原文。
 
 ---
 
-## 核心模块
+## 七、核心模块
 
-### 五维架构组件 (ArchitectureSection)
+### 7.1 五维架构组件
 
-**文件**: `components/sections/architecture.tsx`
+`components/sections/architecture.tsx`
 
-- Tab 切换：五高架构 / 五标体系 / 五化转型 / 五维评估
-- 20 张可展开卡片，每张含图标 + 标题 + 描述 + 标签
-- 响应式网格：移动端1列 → 平板2列 → 桌面5列
-- 动画：卡片悬停放大、展开/收起、Tab滑动过渡
+- 4 个 Tab：五高架构 / 五标体系 / 五化转型 / 五维评估
+- 20 张可展开卡片，每张含标题、副标题、描述、6 个标签
+- 响应式：移动 1 列 → 平板 2 列 → 桌面 5 列
 
-### AI 浮窗 (AIAssistant)
+### 7.2 AI 浮窗
 
-**文件**: `components/ai-assistant/`
+`components/ai-assistant/`
 
-- 拖拽浮动面板 (useDraggable Hook)
-- 4种面板模式：浮动 / 最大化 / 全屏(移动端)
-- 4个标签页：对话 / 命令 / 提示词 / 配置
-- 10种语言实时切换 (无需刷新)
-- 模型管理：Ollama扫描 + 手动添加 + 测试连接
-- 流式响应：SSE + 降级为模拟响应
+- 可拖拽浮窗，4 种形态：浮动 / 最大化 / 全屏（移动端）
+- 4 个标签页：对话 / 命令 / 提示词 / 配置
+- 模型管理：扫描 Ollama / 手动添加 / 测试连接
+- `useChat.ts`：`fetch('/api/chat')` 非 2xx 或网络异常时进入 `generateMockResponse()` 降级
 
-### PWA 支持
+### 7.3 PWA
 
-- Service Worker: 3种缓存策略 (CacheFirst / NetworkFirst / StaleWhileRevalidate)
-- manifest.json: 完整Web App清单 (10种图标 + 屏幕截图)
-- iOS: apple-touch-icon + meta tags + status bar
-- 离线能力: 网络优先 + 缓存回退
+`public/sw.js`
+
+- 三种策略：CacheFirst（静态资源）/ NetworkFirst（导航与 API）/ StaleWhileRevalidate
+- 预缓存使用逐项 `put` 而非 `addAll`，单条失败不会导致 SW 安装整体失败
 - 自动注册 + 版本更新检测
 
-### 移动端优化
+### 7.4 移动端
 
-- 安全区适配: `env(safe-area-inset-*)` 全端兼容
-- 触摸体验: 44px最小触摸目标、tap highlight 移除
-- 滚动优化: `-webkit-overflow-scrolling: touch`、overscroll-behavior
-- 文字优化: `text-size-adjust: 100%` 防止横竖屏切换缩放
-- 响应式排版: `text-3xl`→`text-7xl` 渐进式字号
+安全区 `env(safe-area-inset-*)`、44px 最小触摸目标、滚动惯性、`text-size-adjust`、渐进式字号。
 
 ---
 
-## 配置说明
+## 八、配置说明
 
-### next.config.mjs
+### 8.1 `next.config.ts`
 
 | 配置项 | 说明 |
-|--------|------|
-| 安全头 | HSTS / X-Frame / XSS / Referrer / CSP (仅生产环境) |
-| CSP | 开发模式禁用，生产模式限制 script/connect/img/font |
-| 图片优化 | avif/webp + Spline remotePatterns |
-| output | 生产 standalone，开发 undefined |
+| -------- | ------ |
+| `output` | `BUILD_MODE=export` → `export`；生产 → `standalone`；开发 → 默认 |
+| `trailingSlash` | 静态导出时启用，匹配 Pages 目录式路由 |
+| `headers()` | 静态导出返回空数组（平台限制）；standalone 注入完整安全头 |
+| `images` | avif / webp；静态导出 `unoptimized` |
+| `poweredByHeader` | `false` |
 
-### 端口规范
+### 8.2 端口规范
 
 | 环境 | 端口 | 说明 |
-|------|------|------|
-| 开发 | 3000+ | Next.js 默认，冲突自动递增 |
-| 生产 | 3200 | Docker Compose 默认 |
-| Ollama | 11434 | AI 推理服务 |
+| ------ | ------ | ------ |
+| 开发 | 3030+ | YYC³ 团队规范，冲突自动递增 |
+| 生产（Docker） | 3200 | `docker-compose` 暴露端口 |
+| 容器内部 | 3200 | `ENV PORT` / `EXPOSE` |
+| Ollama | 11434 | 本地推理服务 |
 
 ---
 
-## 测试
-
-### 测试框架
-
-- **Vitest 4.x** + **@testing-library/react** + **jsdom 29.x**
-
-### 测试覆盖
+## 九、测试与质量门禁
 
 ```bash
-pnpm test
+pnpm lint                      # ESLint：0 errors
+pnpm exec tsc --noEmit         # 类型检查：0 errors
+pnpm test                      # Vitest：167 passed
+pnpm run audit:prod            # 生产依赖安全门禁（脚本内置官方源）
+pnpm build                     # standalone 构建
+BUILD_MODE=export pnpm build   # 静态导出构建
 ```
-
-**158 测试用例, 7 个测试文件:**
 
 | 测试文件 | 用例数 | 覆盖范围 |
-|----------|--------|----------|
-| `i18n.test.ts` | 26 | 翻译完整性(3层验证) + key结构 + translate函数 |
-| `ai-assistant.test.tsx` | 57 | AI浮窗(常量/Hooks/14组件/国际化) |
-| `architecture.test.tsx` | 8 | 五维架构渲染 + i18n集成 |
-| `api.test.ts` | 12 | API验证(Zod schema) |
-| `core.test.ts` | 30 | i18n客户端 + 翻译函数 + 边界条件 |
-| `components.test.tsx` | 12 | 主题/I18n Provider + 工具函数 + 常量 |
-| `ratelimit.test.tsx` | 13 | 限流逻辑 |
+| ---------- | -------- | ---------- |
+| `i18n.test.ts` | 53 | 10 语言键集完全对齐 + key 结构 + translate |
+| `ai-assistant.test.tsx` | 58 | 常量 / Hooks / 子组件 / 国际化 |
+| `core.test.ts` | 18 | i18n 客户端 + 翻译函数 + 边界 |
+| `api.test.ts` | 11 | Zod Schema 与请求校验 |
+| `ratelimit.test.ts` | 11 | 限流逻辑 |
+| `components.test.tsx` | 9 | 主题 / Provider / 工具函数 |
+| `architecture.test.tsx` | 7 | 架构区渲染 + i18n 集成 |
 
-### Lint
+**合计：7 个文件 / 167 用例。**
 
-```bash
-pnpm lint    # ESLint 0 errors
-npx tsc --noEmit  # TypeScript 无类型错误
+---
+
+## 十、CI/CD
+
+```mermaid
+flowchart TD
+    P["push main / develop<br/>PR → main"] --> Q["quality（全分支）"]
+    Q --> Q1["pnpm install --frozen-lockfile"]
+    Q1 --> Q2["lint → tsc → test"]
+    Q2 --> Q3["pnpm audit --prod --audit-level=high"]
+    Q3 --> Q4["BUILD_MODE=export build"]
+    Q4 --> Q5["校验 out/CNAME = portal.yyc3.top"]
+    Q5 -->|仅 main| U["上传 Pages artifact"]
+    U --> D["deploy-pages<br/>environment: github-pages"]
+    Q --> K["docker（仅 main）<br/>构建 standalone 镜像"]
+    P --> R["dependency-review（仅 PR）<br/>阻断 high+ 新引入漏洞"]
+    P --> C["CodeQL<br/>javascript-typescript"]
+```
+
+- 工作流级权限收敛为 `contents: read`，`pages: write` / `id-token: write` 仅在部署作业内提升
+- `main` 分支并发不取消（保证部署顺序），其它分支取消进行中的旧运行
+- 依赖更新由 `.github/dependabot.yml` 每周提交 PR；`braces` 因上游无补丁版本被显式忽略
+
+---
+
+## 十一、依赖安全现状
+
+| 范围 | 漏洞数 | 说明 |
+|------|--------|------|
+| 生产依赖 | **0** | `pnpm audit --prod --audit-level=high` 通过 |
+| 全量（含 dev） | 1 | `braces`（无上游修补版本，仅存在于开发工具链） |
+
+已通过 `pnpm.overrides` 收敛：`@babel/core`、`browserslist`、`baseline-browser-mapping`、`js-yaml`、`source-map-js`。
+
+---
+
+## 十二、已知限制
+
+| 限制 | 原因 | 影响 |
+| ------ | ------ | ------ |
+| Pages 无自定义响应头 | GitHub Pages 平台能力 | 仅 `<meta>` CSP 可用，`frame-ancestors` 无法生效 |
+| Pages 上 `/api/chat` 返回 405 | 静态导出不含 API Route | AI 对话降级为模拟响应，功能可演示不可推理 |
+| 静态模式无图片优化 | `images.unoptimized` | 依赖构建期产物体积控制 |
+| `braces` 仍被审计标记 | 上游无补丁版本 | 仅开发期工具链，不进运行时 |
+
+---
+
+## 十三、文档体系
+
+```mermaid
+flowchart LR
+    A["README.md<br/>对外门面 / 徽章 / 快速开始"] --> B["docs/DEVELOPER.md<br/>本文件 · 开发与架构"]
+    A --> C["CONTRIBUTING.md<br/>贡献流程与质量门禁"]
+    A --> D["SECURITY.md<br/>漏洞报告与安全边界"]
+    A --> E["CODE_OF_CONDUCT.md<br/>社区行为准则"]
+    A --> F["CHANGELOG.md<br/>版本变更"]
+    B --> G["docs/document_registry.json<br/>文档注册表"]
+    C --> H[".github/<br/>Issue / PR 模板 · CODEOWNERS · Dependabot"]
 ```
 
 ---
 
-## CI/CD
+<div align="center">
 
-### GitHub Actions
+**© 2025-2026 YanYuCloudCube Team. All Rights Reserved.**
 
-**文件**: `.github/workflows/ci.yml`
+*言启千行代码，语枢万物智能*
 
-```
-push/PR → main
-├── Quality Gates
-│   ├── pnpm lint
-│   ├── npx tsc --noEmit
-│   └── pnpm build
-└── Docker Build
-    └── docker build --provenance=false
-```
+*Words Initiate Thousands of Lines of Code, Language Pivots the Intelligence of All Things*
 
----
+<admin@0379.email> · [portal.yyc3.top](https://portal.yyc3.top)
 
-## YYC³ 标准化审计评分
-
-**综合评级: A (94/100)**
-
-| 维度 | 权重 | 得分 | 评级 |
-|------|------|------|------|
-| 技术架构 | 25% | 94 | A |
-| 代码质量 | 20% | 91 | A- |
-| 功能完整性 | 20% | 96 | A |
-| DevOps | 15% | 90 | A- |
-| 性能与安全 | 15% | 92 | A |
-| 业务价值 | 5% | 96 | A |
-
-### 已完成功能
-
-- [x] i18n 纯函数翻译体系 (10语言, 214 keys, SSR安全, 零Hydration)
-- [x] AI 对话集成 (Ollama + SSE流式 + 降级模拟)
-- [x] AI 浮窗 (拖拽/最大化/10语言切换/模型管理)
-- [x] 五维驱动架构组件 (4Tab×5卡片, 响应式网格)
-- [x] 主题切换系统 (dark/light, CSS变量)
-- [x] 3D 场景联动 (鼠标视差 + 浮动动画)
-- [x] AI 成员展示区 (8位真实成员 + 能力指标)
-- [x] 知识库资产展示 (Skills / API / MCP)
-- [x] **PWA 支持** (Service Worker 3策略 + manifest + 离线)
-- [x] **移动端优化** (安全区/触摸/滚动/响应式)
-- [x] CI/CD 管道 (GitHub Actions)
-- [x] 自动化测试 (Vitest 158/158)
-- [x] Docker 容器化 (multi-stage + compose)
-- [x] 安全头配置 (CSP/HSTS/X-Frame/XSS/Referrer)
-- [x] 图片优化 (avif/webp)
-
-### 待改进项
-
-- [ ] E2E 测试 (Playwright)
-- [ ] 性能监控 (Lighthouse CI)
-- [ ] i18n 懒加载 (按需加载语言包)
-- [ ] 离线页面 (offline.html)
-
----
-
-## 文档追溯信息
-
-| 属性 | 值 |
-|------|-----|
-| 文档版本 | v3.1.0 |
-| 创建日期 | 2026-04-26 |
-| 更新日期 | 2026-06-11 |
-| 模版标准 | YYC³ 文档引擎模版 v3.0.0 |
-| 审计评分 | A (94/100) |
-| 开发者文档远程 | [YYC3-Portfolio](https://github.com/YYC-Cube/YYC3-Portfolio.git) |
-| 主仓库 | [YYC3-Nexus-Portal](https://github.com/YYC-Cube/YYC3-Nexus-Portal.git) |
+</div>

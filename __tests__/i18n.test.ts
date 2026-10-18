@@ -83,10 +83,23 @@ describe("i18n Translation Completeness", () => {
     })
   })
 
-  // Other locales are partial translations - just check no empty values
-  const partialLocales = ["zh-TW", "ja", "ko", "fr", "de", "es", "pt-BR", "ar"]
-  for (const locale of partialLocales) {
-    describe(`${locale} (partial translation)`, () => {
+  // All remaining locales must be fully aligned with the authoritative zh-CN key set
+  const fullyTranslatedLocales = ["zh-TW", "ja", "ko", "fr", "de", "es", "pt-BR", "ar"]
+  for (const locale of fullyTranslatedLocales) {
+    describe(`${locale} (full translation)`, () => {
+      it("has same keys as zh-CN", () => {
+        const localeKeys = Object.keys(allLocales[locale])
+        for (const key of requiredKeys) {
+          expect(localeKeys, `${locale} missing key: ${key}`).toContain(key)
+        }
+      })
+
+      it("has no extra keys beyond zh-CN", () => {
+        for (const key of Object.keys(allLocales[locale])) {
+          expect(requiredKeys, `${locale} has unexpected key: ${key}`).toContain(key)
+        }
+      })
+
       it("has no empty values", () => {
         const translations = allLocales[locale]
         for (const [key, value] of Object.entries(translations)) {
@@ -94,23 +107,18 @@ describe("i18n Translation Completeness", () => {
         }
       })
 
-      it("has all basic namespace keys (nav, hero, philosophy, scenario, footer)", () => {
-        const translations = allLocales[locale]
-        const basicKeys = requiredKeys.filter((k) =>
-          k.startsWith("nav.") || k.startsWith("hero.") || k.startsWith("footer.")
-        )
-        for (const key of basicKeys) {
-          expect(translations).toHaveProperty(key)
-        }
-      })
-
-      it("has key count within expected range", () => {
-        const count = Object.keys(allLocales[locale]).length
-        // Should have at least the basic keys and some architecture keys
-        expect(count).toBeGreaterThan(60)
+      it("has correct key count matching zh-CN", () => {
+        expect(Object.keys(allLocales[locale]).length).toBe(requiredKeys.length)
       })
     })
   }
+
+  it("all locales share the exact same key set as zh-CN", () => {
+    const expected = [...requiredKeys].sort()
+    for (const [locale, translations] of Object.entries(allLocales)) {
+      expect(Object.keys(translations).sort(), `${locale} key set diverges`).toEqual(expected)
+    }
+  })
 })
 
 describe("i18n zh-CN Key Integrity", () => {

@@ -1,0 +1,48 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "02:00"
+      timezone: Asia/Shanghai
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "chore(deps)"
+      prefix-development: "chore(deps-dev)"
+    labels:
+      - dependencies
+    groups:
+      react-and-next:
+        patterns:
+          - next
+          - react
+          - react-dom
+          - eslint-config-next
+      types-and-tooling:
+        dependency-type: development
+        patterns:
+          - typescript
+          - typescript-eslint
+          - eslint
+          - vite
+          - vitest
+          - "@vitest/*"
+    ignore:
+      # braces <=3.0.3 暂无上游修补版本，且仅存在于开发链路
+      - dependency-name: braces
+        versions: ["<=3.0.3"]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "02:00"
+      timezone: Asia/Shanghai
+    commit-message:
+      prefix: "chore(ci)"
+    labels:
+      - dependencies
+      - ci

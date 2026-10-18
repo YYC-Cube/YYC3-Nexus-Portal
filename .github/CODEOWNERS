@@ -1,0 +1,18 @@
+# 默认负责人
+* @YYC-Cube
+
+# 构建与部署
+/.github/ @YYC-Cube
+/next.config.ts @YYC-Cube
+/Dockerfile @YYC-Cube
+/docker-compose.yml @YYC-Cube
+
+# 国际化：权威源与全部语言文件需同步评审
+/locales/ @YYC-Cube
+/lib/i18n-client.ts @YYC-Cube
+/components/i18n-provider.tsx @YYC-Cube
+
+# 安全相关
+/SECURITY.md @YYC-Cube
+/lib/csp.ts @YYC-Cube
+/app/api/ @YYC-Cube

@@ -1,7 +1,6 @@
-const CACHE_VERSION = "yyc3-portal-v2"
+const CACHE_VERSION = "yyc3-portal-v3"
 const STATIC_CACHE = `${CACHE_VERSION}-static`
 const DYNAMIC_CACHE = `${CACHE_VERSION}-dynamic`
-const API_CACHE = `${CACHE_VERSION}-api`
 
 const STATIC_ASSETS = [
   "/",
@@ -20,7 +19,6 @@ const STATIC_ASSETS = [
   "/yyc3-dist/favicon.ico",
 ]
 
-const API_ROUTES = ["/api/chat"]
 const MAX_DYNAMIC_ENTRIES = 50
 
 // ----- Install: Cache static assets -----
@@ -52,7 +50,7 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     (async () => {
       const keys = await caches.keys()
-      const validCaches = [STATIC_CACHE, DYNAMIC_CACHE, API_CACHE]
+      const validCaches = [STATIC_CACHE, DYNAMIC_CACHE]
       await Promise.all(
         keys
           .filter((key) => !validCaches.includes(key))
@@ -77,12 +75,6 @@ self.addEventListener("fetch", (event) => {
     if (url.hostname.includes("spline.design")) {
       return // Let browser handle normally
     }
-  }
-
-  // ---- API routes: Network first, fallback to cache ----
-  if (API_ROUTES.some((route) => url.pathname.startsWith(route))) {
-    event.respondWith(networkFirst(request, API_CACHE))
-    return
   }
 
   // ---- Next.js data / static chunks: Stale-while-revalidate ----

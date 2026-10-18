@@ -1,3 +1,4 @@
+import { contentSecurityPolicy } from "@/lib/csp"
 import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
@@ -5,6 +6,8 @@ import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
+
+const isStaticExport = process.env.BUILD_MODE === "export"
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -103,6 +106,9 @@ export default function RootLayout({
         <meta name="theme-color" content="#000000" />
         <meta name="msapplication-TileColor" content="#000000" />
         <meta name="msapplication-TileImage" content="/yyc3-dist/yanyu_cloud_256x256.png" />
+        {isStaticExport && (
+          <meta httpEquiv="Content-Security-Policy" content={contentSecurityPolicy} />
+        )}
         <link rel="manifest" href="/manifest.json" />
         <script
           dangerouslySetInnerHTML={{
@@ -130,7 +136,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased bg-black">
         {children}
-        <Analytics />
+        {!isStaticExport && <Analytics />}
       </body>
     </html>
   )

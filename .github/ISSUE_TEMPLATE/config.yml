@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 安全问题报告
+    url: https://github.com/YYC-Cube/YYC3-Nexus-Portal/blob/main/SECURITY.md
+    about: 请勿公开披露漏洞，按安全政策私下报告
+  - name: 文档与开发指南
+    url: https://github.com/YYC-Cube/YYC3-Nexus-Portal/blob/main/docs/DEVELOPER.md
+    about: 构建、i18n、测试与部署说明
+  - name: 线上站点
+    url: https://portal.yyc3.top
+    about: 访问 YYC³ Nexus Portal

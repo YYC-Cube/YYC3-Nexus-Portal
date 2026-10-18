@@ -8,62 +8,61 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages-${{ github.ref }}
-  cancel-in-progress: false
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+env:
+  NEXT_TELEMETRY_DISABLED: "1"
 
 jobs:
   quality:
     name: Quality Gates
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
-        with:
-          version: 10
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
-      - run: pnpm approve-builds sharp unrs-resolver
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm exec eslint .
-      - run: pnpm exec tsc --noEmit --pretty
-      - run: pnpm exec vitest run
-      - run: pnpm build
-
-  build-pages:
-    name: Build Static Site
-    runs-on: ubuntu-latest
-    needs: quality
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 10
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-      - run: pnpm approve-builds sharp unrs-resolver
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm build
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Lint
+        run: pnpm lint
+      - name: Type check
+        run: pnpm exec tsc --noEmit --pretty
+      - name: Unit tests
+        run: pnpm test
+      - name: Dependency security audit
+        run: pnpm run audit:prod
+      - name: Build static site
+        run: pnpm build
         env:
           BUILD_MODE: export
           NODE_ENV: production
-      - uses: actions/upload-pages-artifact@v3
+      - name: Verify custom domain
+        run: |
+          test -f out/CNAME
+          test "$(cat out/CNAME)" = "portal.yyc3.top"
+          test -f out/index.html
+      - name: Upload Pages artifact
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
         with:
           path: out
 
   deploy-pages:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
-    needs: build-pages
+    timeout-minutes: 10
+    needs: quality
     if: github.ref == 'refs/heads/main'
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
@@ -71,9 +70,25 @@ jobs:
       - uses: actions/deploy-pages@v4
         id: deploy
 
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: high
+          comment-summary-in-pr: on-failure
+
   docker:
     name: Docker Build
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     needs: quality
     if: github.ref == 'refs/heads/main'
     steps:

@@ -9,19 +9,24 @@
 ---
 
 [![YYC³ Standard](https://img.shields.io/badge/YYC%C2%B3-Standard-blue?style=for-the-badge&logo=databricks&logoColor=white)](https://github.com/YYC-Cube)
-[![Next.js](https://img.shields.io/badge/Next.js-16.2.9-000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![CI/CD](https://img.shields.io/github/actions/workflow/status/YYC-Cube/YYC3-Nexus-Portal/ci.yml?branch=main&style=for-the-badge&label=CI%2FCD)](https://github.com/YYC-Cube/YYC3-Nexus-Portal/actions/workflows/ci.yml)
+[![CodeQL](https://img.shields.io/github/actions/workflow/status/YYC-Cube/YYC3-Nexus-Portal/codeql.yml?branch=main&style=for-the-badge&label=CodeQL)](https://github.com/YYC-Cube/YYC3-Nexus-Portal/actions/workflows/codeql.yml)
+[![Next.js](https://img.shields.io/badge/Next.js-16.4.2-000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.2.7-61dafb?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0.3-3178c6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.40-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.2.4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.40.0-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
 [![Zod](https://img.shields.io/badge/Zod-4.4.3-3068B7?style=for-the-badge&logo=zod&logoColor=white)](https://zod.dev/)
-[![Spline](https://img.shields.io/badge/Spline_3D-✓-7C3AED?style=for-the-badge&logo=spline&logoColor=white)](https://spline.design/)
+[![Spline](https://img.shields.io/badge/Spline_3D-%E2%9C%93-7C3AED?style=for-the-badge&logo=spline&logoColor=white)](https://spline.design/)
 
 [![License](https://img.shields.io/badge/License-MIT-brightgreen?style=for-the-badge)](LICENSE)
+[![Security Policy](https://img.shields.io/badge/Security-Policy-blue?style=for-the-badge&logo=shield&logoColor=white)](SECURITY.md)
 [![Deploy](https://img.shields.io/badge/Deploy-GitHub_Pages-222?style=for-the-badge&logo=github&logoColor=white)](https://portal.yyc3.top)
 [![Docker](https://img.shields.io/badge/Docker-Standalone-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://docker.com)
-[![PWA](https://img.shields.io/badge/PWA-✓-5A0FC8?style=for-the-badge&logo=pwa&logoColor=white)](https://web.dev/progressive-web-apps/)
-[![i18n](https://img.shields.io/badge/i18n-10_Languages-FF6B6B?style=for-the-badge&logo=googletranslate&logoColor=white)](https://github.com/YYC-Cube)
+[![PWA](https://img.shields.io/badge/PWA-%E2%9C%93-5A0FC8?style=for-the-badge&logo=pwa&logoColor=white)](https://web.dev/progressive-web-apps/)
+[![i18n](https://img.shields.io/badge/i18n-10_Languages_%C3%97_214_Keys-FF6B6B?style=for-the-badge&logo=googletranslate&logoColor=white)](https://github.com/YYC-Cube)
+[![Node](https://img.shields.io/badge/Node.js-22.x-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![pnpm](https://img.shields.io/badge/pnpm-10.x-F69220?style=for-the-badge&logo=pnpm&logoColor=white)](https://pnpm.io/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen?style=for-the-badge)](CONTRIBUTING.md)
 
 🌐 **[portal.yyc3.top](https://portal.yyc3.top)** · 📦 **[v0.2.0](CHANGELOG.md)** · 📖 **[Dev Guide](docs/DEVELOPER.md)**
@@ -47,33 +52,34 @@
 ### ✨ 核心特性
 
 | 特性 | 说明 |
-|:-----|:------|
+| :----- | :------ |
 | 🎨 **Spline 3D Hero** | 沉浸式 3D 场景 + Canvas 粒子动画 + 60fps 视差滚动 |
-| 🌍 **10 语言 i18n** | 自研纯函数翻译体系 · zh-CN 权威源 · 支持 RTL 阿拉伯语 |
-| 🤖 **AI Chat** | Ollama Qwen3:32B 本地推理 · SSE 流式响应 · Zod 4 验证 |
+| 🌍 **10 语言 i18n** | 10 语言 × 214 键全量对齐 · 自研纯函数体系 · 支持 RTL 阿拉伯语 |
+| 🤖 **AI Chat** | Ollama 本地推理 · SSE 流式响应 · Zod 4 校验 · 静态站自动降级为模拟回复 |
 | 🌗 **PWA 支持** | 可安装 Web App · offline 缓存 · manifest 完整配置 |
 | 🧠 **AI Family 矩阵** | 8 位 AI 智能体 · 9 层架构体系 · 五维全链路驱动 |
 | 📱 **响应式设计** | 移动端折叠卡片 · 自适应网格 · 触摸优化交互 |
-| 🔒 **安全体系** | CSP 安全头 · HSTS 预加载 · 速率限制 · Zod 输入验证 |
+| 🔒 **安全体系** | standalone 注入 CSP/HSTS 等响应头 · 静态站 meta CSP 兜底 · 速率限制 · Zod 验证 |
 
 ---
 
 ## ✦ 技术栈
 
 | 分类 | 技术 | 版本 | 说明 |
-|:-----|:-----|:-----|:-----|
-| **框架** | Next.js | 16.2.9 | App Router + Static Export + Standalone |
+| :----- | :----- | :----- | :----- |
+| **框架** | Next.js | 16.4.2 | App Router + Static Export + Standalone |
 | | React | 19.2.7 | Client Components + Dynamic Import |
 | | TypeScript | 6.0.3 | strict mode + bundler resolution |
-| **样式** | Tailwind CSS | v4.3 | 原子化 CSS + CSS Variables 双主题 |
-| | shadcn/ui | new-york | 60+ Radix UI primitives |
-| | Framer Motion | 12.40 | 声明式动画 + 视差滚动 |
+| **样式** | Tailwind CSS | 4.2.4 | 原子化 CSS + CSS Variables 双主题 |
+| | shadcn/ui | new-york | 59 个组件 · 27 个 Radix UI 原语 |
+| | Framer Motion | 12.40.0 | 声明式动画 + 视差滚动 |
 | **3D** | Spline | latest | WebGL 沉浸式 3D Hero 场景 |
-| **AI** | Ollama | Qwen3:32B | 本地 LLM 推理 + SSE 流式 |
-| **国际化** | @yyc3/i18n | 自研 v2 | 10 语言 × 79 键纯函数体系 |
+| **AI** | Ollama | qwen3:32b（可选） | 本地 LLM 推理 + SSE 流式 |
+| **国际化** | i18n | 自研 v2 | 10 语言 × 214 键纯函数体系（全量对齐） |
 | **验证** | Zod | 4.4.3 | Schema 验证 + 运行时类型安全 |
-| **质量** | Vitest | v4 | 单元测试 + V8 覆盖率 |
-| | ESLint | 9.x | typescript-eslint 严格模式 |
+| **质量** | Vitest | 5.0.5 | 167 用例 · V8 覆盖率 |
+| | ESLint | 9.39.4 | typescript-eslint 严格模式 |
+| **构建** | pnpm | 10.34.7 | `packageManager` 锁定 · overrides 收敛 |
 | **部署** | GitHub Pages | Actions | 静态导出 → portal.yyc3.top |
 | | Docker | standalone | 多阶段构建 → `:3200` |
 | **PWA** | Web Manifest | ✓ | 可安装 + offline 缓存 + 屏幕截图 |
@@ -83,11 +89,11 @@
 ## ✦ 快速开始
 
 ```bash
-# 前置条件：Node.js >= 22, pnpm >= 9
+# 前置条件：Node.js >= 22 <23, pnpm >= 10
 git clone https://github.com/YYC-Cube/YYC3-Nexus-Portal.git
 cd YYC3-Nexus-Portal
 
-# 安装依赖
+# 安装依赖（packageManager 已锁定 pnpm 10.34.7）
 pnpm install
 
 # 启动开发服务器 → http://localhost:3000
@@ -98,18 +104,18 @@ ollama run qwen3:32b
 
 # 生产构建
 pnpm build                    # Standalone 模式
-BUILD_MODE=export pnpm build  # 静态导出模式
+BUILD_MODE=export pnpm build  # 静态导出模式 → out/
 ```
 
 <details>
 <summary><strong>质量门禁命令</strong></summary>
 
 ```bash
-pnpm lint                       # ESLint 代码检查（零错误）
-pnpm exec tsc --noEmit          # TypeScript 类型检查（零错误）
-pnpm test                       # Vitest 单元测试
-pnpm build                      # webpack 生产构建
-pnpm audit                      # 依赖安全审计
+pnpm lint                              # ESLint 代码检查（零错误）
+pnpm exec tsc --noEmit                 # TypeScript 类型检查（零错误）
+pnpm test                              # Vitest 单元测试（167 用例）
+pnpm run audit:prod                    # 生产依赖安全门禁（零漏洞，脚本内置官方源）
+pnpm build                             # webpack 生产构建
 ```
 
 </details>
@@ -156,7 +162,7 @@ pnpm audit                      # 依赖安全审计
 ## ✦ AI Family 智能体矩阵
 
 | 成员 | 代号 | 角色 | 能力域 |
-|:-----|:-----|:-----|:-------|
+| :----- | :----- | :----- | :------- |
 | 🧠 **TianShu** | 元启·天枢 | 全局编排与决策中枢 | 推理规划 + 策略调度 |
 | 🛡️ **ZhiYun** | 智云·守护 | 安全审计与纵深防御 | 威胁检测 + 合规审计 |
 | 📚 **GeWu** | 格物·宗师 | 代码质量与工程标准 | 静态分析 + 质量优化 |
@@ -207,24 +213,65 @@ YYC3-Nexus-Portal/
 └── __tests__/                  # Vitest 单元测试
 ```
 
+### 运行时架构
+
+```mermaid
+flowchart TD
+    subgraph Client["浏览器"]
+        L["app/layout.tsx<br/>SEO · PWA · SW 注册"]
+        P["app/page.tsx"]
+        T["ThemeProvider"]
+        I["I18nProvider<br/>10 语言 × 214 键"]
+        N["NewYorkerSpline"]
+        S["Sections ×5 + Navbar + Footer"]
+        A["AIAssistant 浮窗"]
+    end
+    L --> P --> T --> I --> N
+    N --> S
+    N --> A
+    A -->|"standalone"| API["/api/chat<br/>Ollama SSE 代理"]
+    A -->|"静态站 405 降级"| M["本地模拟响应"]
+    API --> O["Ollama :11434"]
+    SW["public/sw.js<br/>3 种缓存策略"] -.-> Client
+```
+
 ---
 
 ## ✦ 部署
 
 | 方式 | 触发 | 环境 | 地址 |
-|:-----|:-----|:-----|:-----|
+| :----- | :----- | :----- | :----- |
 | **GitHub Pages** | push main → CI/CD | 静态导出 | [portal.yyc3.top](https://portal.yyc3.top) |
 | **Docker** | `docker-compose up -d` | standalone | `http://localhost:3200` |
 | **手动** | `BUILD_MODE=export pnpm build` | `out/` | 本地静态文件 |
 
-### 安全头配置
+### 安全能力矩阵
 
-| 头部 | 值 |
-|:-----|:----|
-| CSP | `default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'` |
-| HSTS | `max-age=63072000; includeSubDomains; preload` |
-| X-Frame-Options | `SAMEORIGIN` |
-| Referrer-Policy | `origin-when-cross-origin` |
+> 安全头由 `next.config.ts` 注入，**仅在 standalone / Docker 模式生效**。
+> GitHub Pages 不支持自定义响应头，静态导出时改用 HTML `<meta http-equiv="Content-Security-Policy">` 兜底。
+
+| 安全能力 | Standalone / Docker | GitHub Pages |
+| :--------- | :------------------ | :------------- |
+| `Content-Security-Policy` | ✅ 响应头 | ⚠️ 仅 `<meta>` 形式 |
+| `Strict-Transport-Security` | ✅ `max-age=63072000; includeSubDomains; preload` | ❌ 平台不提供（HTTPS 已强制） |
+| `X-Frame-Options` | ✅ `SAMEORIGIN` | ❌ |
+| `X-Content-Type-Options` | ✅ `nosniff` | ❌ |
+| `Referrer-Policy` | ✅ `origin-when-cross-origin` | ❌ |
+| `X-XSS-Protection` | ✅ `1; mode=block` | ❌ |
+| `frame-ancestors` 指令 | ✅ | ❌ meta 不支持 |
+| `/api/chat` 服务端代理 | ✅ | ❌ 返回 405，前端降级 |
+
+**CSP 指令集**（单一源：`lib/csp.ts`）：
+
+```
+default-src 'self';
+script-src 'self' 'unsafe-eval' 'unsafe-inline' https://vercel.live https://va.vercel-scripts.com;
+style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+font-src 'self' https://fonts.gstatic.com;
+img-src 'self' blob: data: https://prod.spline.design;
+connect-src 'self' https://*.spline.design http://localhost:11434 https://va.vercel-scripts.com;
+frame-src 'none'; object-src 'none'
+```
 
 ### Docker 部署
 
@@ -239,7 +286,7 @@ docker run -d --name yyc3-portal -p 3200:3200 yyc3-nexus-portal
 ## ✦ 五维驱动框架
 
 | 维度 | 架构 | 体系 | 转型 |
-|:-----|:-----|:-----|:-----|
+| :----- | :----- | :----- | :----- |
 | ⏱️ 时间维度 | 高可用 | 标准化 | 流程化 |
 | 💾 空间维度 | 高性能 | 规范化 | 数字化 |
 | 🏷️ 属性维度 | 高安全 | 自动化 | 工具化 |
@@ -251,13 +298,17 @@ docker run -d --name yyc3-portal -p 3200:3200 yyc3-nexus-portal
 ## ✦ 文档体系
 
 | 文档 | 说明 |
-|:-----|:------|
+| :----- | :------ |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | 贡献指南 — 分支策略 · 提交规范 · 质量门禁 |
-| [SECURITY.md](SECURITY.md) | 安全策略 — CSP · 漏洞报告 · 安全最佳实践 |
+| [SECURITY.md](SECURITY.md) | 安全策略 — 支持版本 · 漏洞报告 · 双模式安全边界 |
+| [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) | 社区行为准则 — Contributor Covenant v2.1 |
 | [CHANGELOG.md](CHANGELOG.md) | 变更日志 — 版本迭代 · 功能发布记录 |
-| [docs/DEVELOPER.md](docs/DEVELOPER.md) | 开发者指南 — 详细开发说明 · 组件文档 |
-| [docs/i18n-integration-context.md](docs/i18n-integration-context.md) | i18n 集成上下文 · 翻译规范 |
-| [docs/document_registry.json](docs/document_registry.json) | 文档注册表 · 全链路文档索引 |
+| [docs/DEVELOPER.md](docs/DEVELOPER.md) | 开发者指南 — 架构图 · i18n 体系 · 测试 · CI/CD |
+| [docs/document_registry.json](docs/document_registry.json) | 文档注册表 — 全链路文档索引与追溯 |
+
+### 关键词 / Topics
+
+`nextjs` · `react` · `typescript` · `tailwindcss` · `shadcn-ui` · `radix-ui` · `spline-3d` · `framer-motion` · `i18n` · `internationalization` · `pwa` · `ollama` · `local-llm` · `ai-portal` · `3d-website` · `static-site` · `github-pages` · `docker` · `yyc3` · `yanyucloudcube`
 
 ---
 
@@ -298,19 +349,20 @@ docker run -d --name yyc3-portal -p 3200:3200 yyc3-nexus-portal
 ### ✦ Tech Stack
 
 | Category | Tech | Version | Description |
-|:---------|:-----|:--------|:------------|
-| **Framework** | Next.js | 16.2.9 | App Router + Static Export + Standalone |
+| :--------- | :----- | :-------- | :------------ |
+| **Framework** | Next.js | 16.4.2 | App Router + Static Export + Standalone |
 | | React | 19.2.7 | Client Components + Dynamic Import |
 | | TypeScript | 6.0.3 | strict mode + bundler resolution |
-| **Styling** | Tailwind CSS | v4.3 | Utility-first + CSS Variables theming |
-| | shadcn/ui | new-york | 60+ Radix UI primitives |
-| | Framer Motion | 12.40 | Declarative animations + parallax |
+| **Styling** | Tailwind CSS | 4.2.4 | Utility-first + CSS Variables theming |
+| | shadcn/ui | new-york | 59 components · 27 Radix UI primitives |
+| | Framer Motion | 12.40.0 | Declarative animations + parallax |
 | **3D** | Spline | latest | WebGL immersive 3D Hero scene |
-| **AI** | Ollama | Qwen3:32B | Local LLM inference + SSE streaming |
-| **i18n** | @yyc3/i18n | custom v2 | 10 languages × 79 keys, pure functions |
+| **AI** | Ollama | qwen3:32b (optional) | Local LLM inference + SSE streaming |
+| **i18n** | custom engine | v2 | 10 languages × 214 keys, fully aligned |
 | **Validation** | Zod | 4.4.3 | Schema validation + runtime type safety |
-| **Quality** | Vitest | v4 | Unit tests + V8 coverage |
-| | ESLint | 9.x | typescript-eslint strict mode |
+| **Quality** | Vitest | 5.0.5 | 167 tests + V8 coverage |
+| | ESLint | 9.39.4 | typescript-eslint strict mode |
+| **Tooling** | pnpm | 10.34.7 | Pinned via `packageManager` + overrides |
 | **Deploy** | GitHub Pages | Actions | Static export → portal.yyc3.top |
 | | Docker | standalone | Multi-stage build → `:3200` |
 | **PWA** | Web Manifest | ✓ | Installable + offline cache + screenshots |
@@ -318,19 +370,19 @@ docker run -d --name yyc3-portal -p 3200:3200 yyc3-nexus-portal
 ### ✦ Quick Start
 
 ```bash
-# Prerequisites: Node.js >= 22, pnpm >= 9
+# Prerequisites: Node.js >= 22 <23, pnpm >= 10
 git clone https://github.com/YYC-Cube/YYC3-Nexus-Portal.git
 cd YYC3-Nexus-Portal
 pnpm install
 pnpm dev                        # → http://localhost:3000
 pnpm build                      # Production build (standalone)
-BUILD_MODE=export pnpm build    # Static export (GitHub Pages)
+BUILD_MODE=export pnpm build    # Static export (GitHub Pages) → out/
 ```
 
 ### ✦ AI Family Matrix
 
 | Member | Title | Role | Domain |
-|:-------|:------|:-----|:-------|
+| :------- | :------ | :----- | :------- |
 | 🧠 **TianShu** | Meta · Pivot | Commander-in-Chief | Reasoning + Orchestration |
 | 🛡️ **ZhiYun** | Wisdom · Guardian | Security Officer | Threat Detection + Compliance |
 | 📚 **GeWu** | Inquiry · Master | Quality Officer | Code Analysis + Standards |
@@ -357,7 +409,7 @@ Layer 1  │  Infrastructure (Docker/K8s/PostgreSQL/Redis/CDN)
 ### ✦ Deployment
 
 | Method | Trigger | Environment | URL |
-|:-------|:--------|:------------|:----|
+| :------- | :-------- | :------------ | :---- |
 | **GitHub Pages** | push main → CI/CD | Static export | [portal.yyc3.top](https://portal.yyc3.top) |
 | **Docker** | `docker-compose up -d` | standalone | `http://localhost:3200` |
 | **Manual** | `BUILD_MODE=export pnpm build` | `out/` | Local static files |

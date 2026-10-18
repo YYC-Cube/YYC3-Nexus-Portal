@@ -7,6 +7,7 @@ export default tseslint.config(
       ".next/",
       "out/",
       "build/",
+      "coverage/",
       "docs/",
       "public/",
       "YYC3-i18n/",

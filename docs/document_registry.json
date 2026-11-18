@@ -1,17 +1,18 @@
 {
-  "export_time": "2026-10-19T00:00:00.000Z",
+  "export_time": "2026-11-18T00:00:00.000Z",
   "project": "YYC³ Nexus Portal",
   "project_description": "言渝云枢 · 智能交互门户 — YYC³ AI Family 3D 交互展示门户",
   "project_version": "0.2.0",
-  "framework": "Next.js 16.4.2 + React 19.2.7 + TypeScript 6.0.3",
+  "framework": "Next.js 16.4.6 + React 19.2.7 + TypeScript 6.0.3",
   "i18n_engine": "自研纯函数翻译体系 (10 locales × 214 keys, 全量对齐)",
   "template_standard": "YYC³ 文档引擎模版 v3.0.0",
   "quality_gates": {
     "typescript": "0 errors",
-    "eslint": "0 errors (74 warnings)",
-    "vitest": "167/167 passed (7 files)",
+    "eslint": "0 errors (warnings 数见终验报告)",
+    "vitest": "176/176 passed (9 files)",
+    "coverage": "statements 38.96% / branches 39.81% / functions 25.19% / lines 44.85%",
     "audit_prod": "0 vulnerabilities (--audit-level=high)",
-    "build": "standalone + export 双模式通过"
+    "build": "standalone 本地通过；export 本机受安全钩子阻断未验证，CI 已配置双构建门禁"
   },
   "deployment": {
     "primary": "GitHub Pages (portal.yyc3.top)",
@@ -59,11 +60,53 @@
       "version": "v4.0.0",
       "status": "published",
       "tags": ["文档索引", "追溯"]
+    },
+    "YYC3-项目闭环-验收系统/reports/README.md": {
+      "description": "验收报告目录索引 — 报告、规划与衔接文档归档入口",
+      "version": "v1.0.0",
+      "status": "published",
+      "tags": ["文档索引", "验收报告"]
+    },
+    "YYC3-项目闭环-验收系统/reports/YYC3-项目调研-首次技术分析报告.md": {
+      "description": "首次技术调研与深度分析基线",
+      "version": "v1.0.0",
+      "status": "published",
+      "tags": ["技术调研", "深度分析", "风险评估"]
+    },
+    "YYC3-项目闭环-验收系统/reports/YYC3-项目调研-关键信息确认清单.md": {
+      "description": "信息缺失项、确认路径与闭环状态跟踪",
+      "version": "v1.0.0",
+      "status": "review",
+      "tags": ["确认清单", "信息缺口", "待确认"]
+    },
+    "YYC3-项目闭环-验收系统/reports/YYC3-项目修复-优先级执行报告.md": {
+      "description": "P0→P2 修复措施、证据、未闭环项与回滚方案",
+      "version": "v1.0.0",
+      "status": "published",
+      "tags": ["问题修复", "优先级执行", "回滚方案"]
+    },
+    "YYC3-项目闭环-验收系统/reports/YYC3-项目验收-终验复核报告.md": {
+      "description": "修复后全量门禁实测、前后对比与交付判定",
+      "version": "v1.0.0",
+      "status": "published",
+      "tags": ["终验复核", "质量门禁", "交付判定"]
+    },
+    "YYC3-项目闭环-验收系统/reports/YYC3-线上故障-CSP与SW拦截修复报告.md": {
+      "description": "静态站 CSP 拦截 Spline WASM 与 SW 伪造 503 的根因及修复",
+      "version": "v1.0.0",
+      "status": "published",
+      "tags": ["线上故障", "CSP", "Service Worker", "部署验证"]
+    },
+    "YYC3-项目闭环-验收系统/reports/YYC3-安全审计-远程分支与依赖漏洞处理报告.md": {
+      "description": "远程分支取舍、漏洞扫描结论与 CI 门禁完善",
+      "version": "v1.0.0",
+      "status": "published",
+      "tags": ["远程分支", "依赖安全", "CI配置", "漏洞扫描"]
     }
   },
   "github_automation": {
     "workflows": {
-      ".github/workflows/ci.yml": "quality → Pages 部署 / Docker / Dependency Review",
+      ".github/workflows/ci.yml": "quality → Pages 部署 / Docker / Dependency Review / Standalone 构建",
       ".github/workflows/codeql.yml": "CodeQL javascript-typescript 安全扫描"
     },
     "dependabot": ".github/dependabot.yml",
@@ -101,7 +144,9 @@
     "lib": [
       "lib/i18n-client.ts",
       "lib/csp.ts",
-      "lib/utils.ts"
+      "lib/utils.ts",
+      "lib/chat-schema.ts",
+      "lib/rate-limit.ts"
     ],
     "locales": [
       "locales/zh-CN.ts",
@@ -123,7 +168,9 @@
       "__tests__/components.test.tsx",
       "__tests__/core.test.ts",
       "__tests__/api.test.ts",
-      "__tests__/ratelimit.test.ts"
+      "__tests__/ratelimit.test.ts",
+      "__tests__/chat-route.test.ts",
+      "__tests__/csp.test.ts"
     ],
     "infrastructure": [
       "Dockerfile",
@@ -178,6 +225,34 @@
       "action": "rewritten",
       "version": "v4.0.0",
       "comment": "移除与实况不符的 46 文档/81 测试等失真数据"
+    },
+    {
+      "timestamp": "2026-11-18T00:00:00.000Z",
+      "document": "docs/YYC3-项目闭环-验收系统/reports/",
+      "action": "created",
+      "version": "v1.0.0",
+      "comment": "首次技术调研报告与关键信息确认清单落盘；建立验收报告归档路径"
+    },
+    {
+      "timestamp": "2026-11-18T00:00:00.000Z",
+      "document": "app/api/chat/route.ts",
+      "action": "hardened",
+      "version": "v0.2.1",
+      "comment": "P0 依赖升级、P1 测试接生产代码、SSE 缓冲解析与超时加固、CI 双构建门禁"
+    },
+    {
+      "timestamp": "2026-11-18T00:00:00.000Z",
+      "document": "lib/csp.ts, public/sw.js",
+      "action": "fixed",
+      "version": "v0.2.1",
+      "comment": "线上故障修复：放行 Spline WASM 的 unpkg 请求；SW 跨域请求直接放行并升级缓存版本至 v4"
+    },
+    {
+      "timestamp": "2026-11-18T00:00:00.000Z",
+      "document": ".github/workflows/ci.yml",
+      "action": "hardened",
+      "version": "v0.2.1",
+      "comment": "远程分支评估后保留 main；新增覆盖率硬门禁与全量审计非阻塞报告，采纳 4 项 Actions 主版本升级"
     }
   ]
 }

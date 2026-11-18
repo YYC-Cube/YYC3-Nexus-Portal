@@ -43,7 +43,7 @@ export const site: Record<string, string> = {
   "philosophy.stat.qps": "QPS スループット",
   "philosophy.stat.qps.value": "10000+",
   "philosophy.stat.coverage": "コードカバレッジ",
-  "philosophy.stat.coverage.value": "80%+",
+  "philosophy.stat.coverage.value": "38%+",
   "philosophy.stat.members": "AI メンバー",
   "philosophy.stat.members.value": "8+",
   "scenario.label": "Use Cases",

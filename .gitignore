@@ -53,6 +53,8 @@ docs/ai-dev/
 docs/.yyc3/
 docs/YYC3-*.md
 docs/YYC3-*/
+!docs/YYC3-项目闭环-验收系统/
+docs/YYC3-项目闭环-验收系统/*.md
 docs/i18n-integration-context.md
 
 # design reference images

@@ -23,7 +23,7 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v7
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v7
         with:
           node-version: 22
@@ -36,8 +36,13 @@ jobs:
         run: pnpm exec tsc --noEmit --pretty
       - name: Unit tests
         run: pnpm test
+      - name: Coverage thresholds
+        run: pnpm exec vitest run --coverage --coverage.reporter=text
       - name: Dependency security audit
         run: pnpm run audit:prod
+      - name: Full dependency audit (dev, informational)
+        continue-on-error: true
+        run: pnpm run audit:all
       - name: Build static site
         run: pnpm build
         env:
@@ -54,6 +59,29 @@ jobs:
         with:
           path: out
 
+  build-standalone:
+    name: Build Standalone
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    needs: quality
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build standalone
+        run: pnpm build
+        env:
+          NODE_ENV: production
+      - name: Verify standalone output
+        run: |
+          test -f .next/standalone/server.js
+          test -d .next/static
+
   deploy-pages:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
@@ -67,7 +95,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      - uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v5
         id: deploy
 
   dependency-review:
@@ -80,7 +108,7 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/dependency-review-action@v4
+      - uses: actions/dependency-review-action@v5
         with:
           fail-on-severity: high
           comment-summary-in-pr: on-failure
@@ -94,7 +122,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: docker/setup-buildx-action@v4
-      - uses: docker/build-push-action@v6
+      - uses: docker/build-push-action@v7
         with:
           context: .
           push: false

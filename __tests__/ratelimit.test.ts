@@ -1,22 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-
-function createRateLimiter(max: number, windowMs: number) {
-  const map = new Map<string, { count: number; resetAt: number }>()
-  return {
-    check(ip: string): boolean {
-      const now = Date.now()
-      const entry = map.get(ip)
-      if (!entry || now > entry.resetAt) {
-        map.set(ip, { count: 1, resetAt: now + windowMs })
-        return true
-      }
-      if (entry.count >= max) return false
-      entry.count++
-      return true
-    },
-    reset(ip: string) { map.delete(ip) },
-  }
-}
+import { createRateLimiter } from "@/lib/rate-limit";
 
 describe("Rate Limiter", () => {
   beforeEach(() => { vi.useFakeTimers() })

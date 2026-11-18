@@ -64,8 +64,9 @@ PR 合并前必须全部通过（CI 会逐项校验）：
 ```bash
 pnpm lint                              # ESLint：0 errors
 pnpm exec tsc --noEmit                 # TypeScript：0 errors
-pnpm test                              # Vitest：167 用例全绿
+pnpm test                              # Vitest：176 用例全绿
 pnpm run audit:prod                    # 生产依赖：0 漏洞（脚本内置官方源）
+pnpm run audit:all                     # 全量依赖审计（含 dev，CI 非阻塞报告）
 pnpm build                             # standalone 构建
 BUILD_MODE=export pnpm build           # 静态导出构建（Pages 路径）
 ```

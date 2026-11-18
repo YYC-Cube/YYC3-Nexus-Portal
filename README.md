@@ -11,12 +11,12 @@
 [![YYC³ Standard](https://img.shields.io/badge/YYC%C2%B3-Standard-blue?style=for-the-badge&logo=databricks&logoColor=white)](https://github.com/YYC-Cube)
 [![CI/CD](https://img.shields.io/github/actions/workflow/status/YYC-Cube/YYC3-Nexus-Portal/ci.yml?branch=main&style=for-the-badge&label=CI%2FCD)](https://github.com/YYC-Cube/YYC3-Nexus-Portal/actions/workflows/ci.yml)
 [![CodeQL](https://img.shields.io/github/actions/workflow/status/YYC-Cube/YYC3-Nexus-Portal/codeql.yml?branch=main&style=for-the-badge&label=CodeQL)](https://github.com/YYC-Cube/YYC3-Nexus-Portal/actions/workflows/codeql.yml)
-[![Next.js](https://img.shields.io/badge/Next.js-16.4.2-000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.4.6-000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.2.7-61dafb?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0.3-3178c6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.2.4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.40.0-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
-[![Zod](https://img.shields.io/badge/Zod-4.4.3-3068B7?style=for-the-badge&logo=zod&logoColor=white)](https://zod.dev/)
+[![Zod](https://img.shields.io/badge/Zod-4.6.7-3068B7?style=for-the-badge&logo=zod&logoColor=white)](https://zod.dev/)
 [![Spline](https://img.shields.io/badge/Spline_3D-%E2%9C%93-7C3AED?style=for-the-badge&logo=spline&logoColor=white)](https://spline.design/)
 
 [![License](https://img.shields.io/badge/License-MIT-brightgreen?style=for-the-badge)](LICENSE)
@@ -67,7 +67,7 @@
 
 | 分类 | 技术 | 版本 | 说明 |
 | :----- | :----- | :----- | :----- |
-| **框架** | Next.js | 16.4.2 | App Router + Static Export + Standalone |
+| **框架** | Next.js | 16.4.6 | App Router + Static Export + Standalone |
 | | React | 19.2.7 | Client Components + Dynamic Import |
 | | TypeScript | 6.0.3 | strict mode + bundler resolution |
 | **样式** | Tailwind CSS | 4.2.4 | 原子化 CSS + CSS Variables 双主题 |
@@ -76,8 +76,8 @@
 | **3D** | Spline | latest | WebGL 沉浸式 3D Hero 场景 |
 | **AI** | Ollama | qwen3:32b（可选） | 本地 LLM 推理 + SSE 流式 |
 | **国际化** | i18n | 自研 v2 | 10 语言 × 214 键纯函数体系（全量对齐） |
-| **验证** | Zod | 4.4.3 | Schema 验证 + 运行时类型安全 |
-| **质量** | Vitest | 5.0.5 | 167 用例 · V8 覆盖率 |
+| **验证** | Zod | 4.6.7 | Schema 验证 + 运行时类型安全 |
+| **质量** | Vitest | 5.0.5 | 176 用例 · V8 覆盖率 |
 | | ESLint | 9.39.4 | typescript-eslint 严格模式 |
 | **构建** | pnpm | 10.34.7 | `packageManager` 锁定 · overrides 收敛 |
 | **部署** | GitHub Pages | Actions | 静态导出 → portal.yyc3.top |
@@ -113,7 +113,7 @@ BUILD_MODE=export pnpm build  # 静态导出模式 → out/
 ```bash
 pnpm lint                              # ESLint 代码检查（零错误）
 pnpm exec tsc --noEmit                 # TypeScript 类型检查（零错误）
-pnpm test                              # Vitest 单元测试（167 用例）
+pnpm test                              # Vitest 单元测试（176 用例）
 pnpm run audit:prod                    # 生产依赖安全门禁（零漏洞，脚本内置官方源）
 pnpm build                             # webpack 生产构建
 ```
@@ -269,7 +269,7 @@ script-src 'self' 'unsafe-eval' 'unsafe-inline' https://vercel.live https://va.v
 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
 font-src 'self' https://fonts.gstatic.com;
 img-src 'self' blob: data: https://prod.spline.design;
-connect-src 'self' https://*.spline.design http://localhost:11434 https://va.vercel-scripts.com;
+connect-src 'self' https://*.spline.design https://unpkg.com http://localhost:11434 https://va.vercel-scripts.com;
 frame-src 'none'; object-src 'none'
 ```
 
@@ -350,7 +350,7 @@ docker run -d --name yyc3-portal -p 3200:3200 yyc3-nexus-portal
 
 | Category | Tech | Version | Description |
 | :--------- | :----- | :-------- | :------------ |
-| **Framework** | Next.js | 16.4.2 | App Router + Static Export + Standalone |
+| **Framework** | Next.js | 16.4.6 | App Router + Static Export + Standalone |
 | | React | 19.2.7 | Client Components + Dynamic Import |
 | | TypeScript | 6.0.3 | strict mode + bundler resolution |
 | **Styling** | Tailwind CSS | 4.2.4 | Utility-first + CSS Variables theming |
@@ -359,8 +359,8 @@ docker run -d --name yyc3-portal -p 3200:3200 yyc3-nexus-portal
 | **3D** | Spline | latest | WebGL immersive 3D Hero scene |
 | **AI** | Ollama | qwen3:32b (optional) | Local LLM inference + SSE streaming |
 | **i18n** | custom engine | v2 | 10 languages × 214 keys, fully aligned |
-| **Validation** | Zod | 4.4.3 | Schema validation + runtime type safety |
-| **Quality** | Vitest | 5.0.5 | 167 tests + V8 coverage |
+| **Validation** | Zod | 4.6.7 | Schema validation + runtime type safety |
+| **Quality** | Vitest | 5.0.5 | 176 tests + V8 coverage |
 | | ESLint | 9.39.4 | typescript-eslint strict mode |
 | **Tooling** | pnpm | 10.34.7 | Pinned via `packageManager` + overrides |
 | **Deploy** | GitHub Pages | Actions | Static export → portal.yyc3.top |

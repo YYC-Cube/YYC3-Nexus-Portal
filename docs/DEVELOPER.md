@@ -41,14 +41,14 @@ YYC³ Nexus Portal 是 YYC³ AI Family 的 3D 沉浸式智能交互门户。核�
 
 | 技术 | 实际版本 | 用途 |
 | ------ | --------- | ------ |
-| Next.js | 16.4.2 | App Router + Static Export / Standalone（构建使用 `--webpack`） |
+| Next.js | 16.4.6 | App Router + Static Export / Standalone（构建使用 `--webpack`） |
 | React | 19.2.7 | UI 渲染（Client Components + 动态导入） |
 | TypeScript | 6.0.3 | strict mode + bundler resolution |
 | Tailwind CSS | 4.2.4 | 原子化 CSS + CSS 变量双主题 |
 | shadcn/ui + Radix UI | 59 个组件 / 27 个 Radix 原语 | 无障碍组件基础 |
 | Framer Motion | 12.40.0 | 视差 / 粒子 / 打字机动画 |
 | Spline | `@splinetool/react-spline` | 3D Hero 场景 |
-| Zod | 4.4.3 | API 输入 Schema 校验 |
+| Zod | 4.6.7 | API 输入 Schema 校验 |
 | Ollama | qwen3:32b（可选） | 本地 LLM 推理 |
 | Vitest + jsdom | 5.0.5 / 30.1.3 | 单元与组件测试 |
 | pnpm | 10.34.7（`packageManager` 锁定） | 包管理 |
@@ -131,7 +131,7 @@ YYC3-Nexus-Portal/
 │   ├── csp.ts                    # CSP 指令单一源
 │   └── utils.ts                  # cn() 等工具
 ├── locales/                      # 10 语言，各 214 键
-├── __tests__/                    # 7 个测试文件，167 用例
+├── __tests__/                    # 9 个测试文件，176 用例
 ├── public/
 │   ├── sw.js                     # Service Worker（3 种缓存策略）
 │   ├── manifest.json             # PWA 清单
@@ -292,8 +292,9 @@ pnpm test -- __tests__/i18n.test.ts
 ```bash
 pnpm lint                      # ESLint：0 errors
 pnpm exec tsc --noEmit         # 类型检查：0 errors
-pnpm test                      # Vitest：167 passed
+pnpm test                      # Vitest：176 passed
 pnpm run audit:prod            # 生产依赖安全门禁（脚本内置官方源）
+pnpm run audit:all             # 全量依赖审计（含 dev；CI 非阻塞报告）
 pnpm build                     # standalone 构建
 BUILD_MODE=export pnpm build   # 静态导出构建
 ```
@@ -308,7 +309,7 @@ BUILD_MODE=export pnpm build   # 静态导出构建
 | `components.test.tsx` | 9 | 主题 / Provider / 工具函数 |
 | `architecture.test.tsx` | 7 | 架构区渲染 + i18n 集成 |
 
-**合计：7 个文件 / 167 用例。**
+**合计：9 个文件 / 176 用例。**
 
 ---
 

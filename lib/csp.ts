@@ -4,7 +4,7 @@ export const cspDirectives = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' blob: data: https://prod.spline.design",
-  "connect-src 'self' https://*.spline.design http://localhost:11434 https://va.vercel-scripts.com",
+  "connect-src 'self' https://*.spline.design https://unpkg.com http://localhost:11434 https://va.vercel-scripts.com",
   "frame-src 'none'",
   "object-src 'none'",
 ]

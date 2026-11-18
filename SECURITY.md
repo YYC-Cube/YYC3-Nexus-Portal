@@ -48,7 +48,7 @@ script-src 'self' 'unsafe-eval' 'unsafe-inline' https://vercel.live https://va.v
 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
 font-src 'self' https://fonts.gstatic.com;
 img-src 'self' blob: data: https://prod.spline.design;
-connect-src 'self' https://*.spline.design http://localhost:11434 https://va.vercel-scripts.com;
+connect-src 'self' https://*.spline.design https://unpkg.com http://localhost:11434 https://va.vercel-scripts.com;
 frame-src 'none'; object-src 'none'
 ```
 
@@ -80,7 +80,7 @@ frame-src 'none'; object-src 'none'
 | 项目 | 状态 |
 | ------ | ------ |
 | 生产依赖漏洞（`pnpm run audit:prod`） | **0** |
-| 全量依赖漏洞（含 dev） | 1 |
+| 全量依赖漏洞（含 dev） | 4（2 个独立公告，均属开发工具链；CI 非阻塞报告） |
 | Dependabot 安全更新 | ✅ 已启用 |
 | Dependabot 版本更新 | ✅ 每周自动 PR（`.github/dependabot.yml`） |
 | Dependency Review | ✅ PR 阻断 high 及以上新引入漏洞 |
@@ -92,6 +92,8 @@ frame-src 'none'; object-src 'none'
 | 依赖 | 漏洞 | 说明 |
 |------|------|------|
 | `braces <= 3.0.3` | 深层嵌套正则导致栈耗尽（DoS） | 上游**无修补版本**（`patched_versions: null`）；仅存在于开发工具链（ESLint / 构建期），不进入运行时产物。已在 `dependabot.yml` 显式忽略。 |
+| `picomatch <= 4.0.7` | 单次分支重复 extglob 导致 ReDoS | 最新发布版仍为 4.0.7，上游无修补版本；经 `eslint-config-next` / `vite` 工具链引入，不进入运行时产物。`audit:prod` 为 0。 |
+| `minimatch >=7 <11.0.1` | globparts 放大导致 DoS | 修补版 11.x 为 ESM-only，强制覆盖会破坏 typescript-eslint 的 CJS 依赖链；仅存在于 ESLint 工具链，故列为已接受风险。 |
 
 ### 依赖收敛
 

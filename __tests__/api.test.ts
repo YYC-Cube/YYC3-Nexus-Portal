@@ -1,15 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { z } from "zod"
-
-const messageSchema = z.object({
-  role: z.enum(["user", "assistant", "system"]),
-  content: z.string().min(1).max(4000),
-})
-
-const chatRequestSchema = z.object({
-  messages: z.array(messageSchema).min(1).max(50),
-  model: z.string().default("qwen3:32b"),
-})
+import { chatRequestSchema } from "@/lib/chat-schema"
 
 describe("Chat API Validation", () => {
   it("accepts valid chat request", () => {

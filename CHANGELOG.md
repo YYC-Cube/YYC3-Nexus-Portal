@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.1] - 2026-11-18
+
+### 🐛 修复
+
+- 升级 zod 至 4.6.7、next 至 16.4.6，清除生产依赖安全审计中的 1 项高危与 2 项中危漏洞
+- 聊天 API 增加上游超时（默认 30s，可通过 `OLLAMA_TIMEOUT_MS` 注入）与请求异常兜底（502/504）
+- SSE 解析改为跨 chunk 行缓冲，保证终止帧 `[DONE]` 唯一输出
+- API Schema 与限流器抽离至 `lib/chat-schema.ts` / `lib/rate-limit.ts`，测试直接导入生产实现
+- 客户端可信代理头改为显式配置 `TRUST_PROXY_HEADERS`，默认不采信以防伪造绕过限流
+- 修复静态站 CSP 未放行 `@splinetool/modelling-wasm` 的 unpkg 请求，恢复 Spline 3D 场景加载
+- 修复 Service Worker 将跨域请求（含 localhost:11434）纳入缓存并伪造 503 的问题；升级缓存版本至 v4
+
+### ✨ 新增
+
+- 验收报告归档目录 `docs/YYC3-项目闭环-验收系统/reports/`，收录首次技术调研报告与关键信息确认清单
+- CI 新增 standalone 构建门禁，与静态导出构建形成双形态对等校验
+- 新增 `__tests__/chat-route.test.ts`，覆盖跨 chunk SSE、超时与异常路径
+
+### ♻️ 优化
+
+- 10 语言站点覆盖率宣称由 80%+ 修正为 38%+（与 V8 覆盖率实测一致）
+- 统一文档口径：注册表、开发者指南、贡献指南、README、`.trae` 项目规则
+- CI 新增覆盖率阈值门禁与非阻塞全量依赖审计；采纳 GitHub Actions 主版本升级
+
 ## [0.2.0] - 2026-05-22
 
 ### ✨ 新增

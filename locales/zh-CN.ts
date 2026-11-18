@@ -43,7 +43,7 @@ export const site: Record<string, string> = {
   "philosophy.stat.qps": "QPS 吞吐量",
   "philosophy.stat.qps.value": "10000+",
   "philosophy.stat.coverage": "代码覆盖率",
-  "philosophy.stat.coverage.value": "80%+",
+  "philosophy.stat.coverage.value": "38%+",
   "philosophy.stat.members": "AI 成员",
   "philosophy.stat.members.value": "8+",
   "scenario.label": "Use Cases",

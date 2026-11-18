@@ -1,4 +1,4 @@
-const CACHE_VERSION = "yyc3-portal-v3"
+const CACHE_VERSION = "yyc3-portal-v4"
 const STATIC_CACHE = `${CACHE_VERSION}-static`
 const DYNAMIC_CACHE = `${CACHE_VERSION}-dynamic`
 
@@ -69,13 +69,8 @@ self.addEventListener("fetch", (event) => {
   // Skip non-GET requests
   if (request.method !== "GET") return
 
-  // Skip browser extensions and non-our-origin
-  if (!url.origin || !url.origin.includes(self.location.origin) && !url.origin.includes("localhost")) {
-    // For external resources like Spline, use network-only
-    if (url.hostname.includes("spline.design")) {
-      return // Let browser handle normally
-    }
-  }
+  // Skip non-same-origin requests (Spline, unpkg, Ollama): let the browser handle them
+  if (url.origin !== self.location.origin) return
 
   // ---- Next.js data / static chunks: Stale-while-revalidate ----
   if (url.pathname.includes("/_next/")) {

@@ -84,6 +84,7 @@ phase: 分支治理
 | `pnpm run audit:prod` | ✅ 0 vulnerabilities |
 | `pnpm run audit:all` | 4 项 dev-only（已接受风险，CI 非阻塞） |
 | CI YAML | ✅ 语法有效 |
+| CI/CD run `44211403550`（commit `43b9bfd`） | ✅ completed / success，4m30s；双构建、覆盖率、生产审计与 CNAME 守卫全绿 |
 
 ---
 

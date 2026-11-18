@@ -42,8 +42,8 @@ phase: 终验
 | 单元测试 | `pnpm test` | ✅ exit 0 | 8 files / 173 passed |
 | V8 覆盖率 | `vitest run --coverage` | ✅ 达标 | statements 38.74% / branches 39.81% / functions 25.19% / lines 44.58%；阈值 30/30/22/36 |
 | 依赖安全 | `pnpm run audit:prod` | ✅ exit 0 | `No known vulnerabilities found` |
-| Standalone 构建 | `pnpm build` | ⚠️ 本机未验证 | 被 IDE safe-delete 安全钩子阻断（`SAFE_DELETE_BULK_CONFIRM_REQUIRED`，目标 `.next/trace-build`）；未绕过、未手动删除。变更前曾实测通过 |
-| Export 构建 | `BUILD_MODE=export pnpm build` | ⚠️ 本机未验证 | 同类安全钩子阻断；CI 门禁已配置，运行结果待观察 |
+| Standalone 构建 | `pnpm build` | ✅ CI 通过 | 本机受 safe-delete 安全钩子阻断且未绕过；CI run `44211403550` 已成功验证 |
+| Export 构建 | `BUILD_MODE=export pnpm build` | ✅ CI 通过 | 本机同类阻断；CI run `44211403550` 已成功验证产物与 CNAME 守卫 |
 
 ---
 
@@ -64,10 +64,10 @@ phase: 终验
 
 ## 三、交付判定
 
-**结论：有条件通过。**
+**结论：通过。**
 
-- 代码质量、类型、测试、覆盖率与依赖安全门禁全部通过，P0-1、P1-1、P1-2、P1-4（门禁配置）、P2-1、P2-2 已闭环。
-- 剩余阻断项不是项目代码缺陷，而是本地环境安全钩子导致双形态构建无法复验；已在 CI 中补齐 standalone 构建 job，需在 CI 或干净环境完成双构建绿灯后方可正式发布。
+- 代码质量、类型、测试、覆盖率与依赖安全门禁全部通过，P0-1、P1-1、P1-2、P1-4、P2-1、P2-2 已闭环。
+- CI/CD run `44211403550`（commit `43b9bfd`）已 `completed / success`，耗时 4m30s，双形态构建、覆盖率阈值、生产审计与 CNAME 守卫全部绿灯；本机的安全钩子阻断已由 CI 复核，未绕过安全钩子。
 - C1–C5 确认项仍待外部回填；在此之前不得开展数据库、workspace 或节点网络架构改造。
 - P1-3 多实例限流、P2-3 lint 警告与译文、P3-1 低优先级项作为后续迭代处理，不构成本次发布的硬停闸（已在执行报告中登记）。
 
